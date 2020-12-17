@@ -1,11 +1,24 @@
 import React from "react";
 import "../styles.css";
 
+// Components
+import Base from "./Base";
+
 const Home = () => {
   return (
-    <div>
-      <h1 className="text-white">Hello Frontend</h1>
-    </div>
+    <Base title="Home Page">
+      <div className="row">
+        <div className="col-4">
+          <button className="btn btn-success">TEST</button>
+        </div>
+        <div className="col-4">
+          <button className="btn btn-success">TEST</button>
+        </div>
+        <div className="col-4">
+          <button className="btn btn-success">TEST</button>
+        </div>
+      </div>
+    </Base>
   );
 };
 
