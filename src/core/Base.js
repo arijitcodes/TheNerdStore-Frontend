@@ -1,13 +1,15 @@
 import React from "react";
+import Menu from "./Menu";
 
 const Base = ({
   title = "Title",
   description = "Description",
-  className = "bg-dark text-white p-4",
+  className = "bg-dark text-white p-2",
   children,
 }) => {
   return (
     <div>
+      <Menu />
       <div className="container-fluid">
         <div className="jumbotron bg-dark text-white text-center">
           <h2 className="display-4">{title}</h2>
