@@ -47,7 +47,6 @@ const AddProduct = () => {
   const preload = () => {
     getAllCategories().then((data) => {
       if (data.err || data.error) {
-        alert("ERROR");
         setValues({ ...values, error: data.err ? data.err : data.error });
       } else {
         setValues({ ...values, categories: data, formData: new FormData() });
