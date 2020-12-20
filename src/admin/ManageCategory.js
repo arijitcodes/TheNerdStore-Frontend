@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // Components and Methods
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { getAllCategories } from "./helper/adminapicall";
+import { deleteCategory, getAllCategories } from "./helper/adminapicall";
 
 const ManageCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -30,7 +30,13 @@ const ManageCategory = () => {
 
   // Delete this Category
   const deleteThisCategory = (categoryId) => {
-    //
+    deleteCategory(categoryId, user._id, token).then((data) => {
+      if (data.err || data.error) {
+        console.log(data.err ? data.err : data.error);
+      } else {
+        preload();
+      }
+    });
   };
 
   return (
@@ -63,7 +69,12 @@ const ManageCategory = () => {
                   </Link>
                 </div>
                 <div className="col-4">
-                  <button onClick={() => {}} className="btn btn-danger">
+                  <button
+                    onClick={() => {
+                      deleteThisCategory(category._id);
+                    }}
+                    className="btn btn-danger"
+                  >
                     Delete
                   </button>
                 </div>
