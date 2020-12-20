@@ -224,8 +224,8 @@ const UpdateProduct = ({ match }) => {
 
   return (
     <Base
-      title="Add Product"
-      description="Add a New Product here."
+      title="Update Product"
+      description="Update the Product here."
       className="container bg-info p-4"
     >
       <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
