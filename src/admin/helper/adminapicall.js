@@ -95,7 +95,6 @@ export const deleteProduct = (productId, userId, token) => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: product,
   })
     .then((response) => {
       return response.json();
