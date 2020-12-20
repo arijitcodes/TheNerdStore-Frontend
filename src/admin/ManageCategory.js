@@ -47,14 +47,13 @@ const ManageCategory = () => {
       <Link className="btn btn-info" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>
       </Link>
-      <h2 className="mb-4">All Categories:</h2>
+      <h2 className="mt-2 mb-4">All Categories ({categories.length}) :</h2>
       <div className="row">
         <div className="col-12">
-          <h2 className="text-center text-white my-3">
+          {/* <h2 className="text-center text-white my-3">
             Total {categories.length} categories
-          </h2>
-
-          {categories &&
+          </h2> */}
+          {/* {categories &&
             categories.map((category, index) => (
               <div key={index} className="row text-center mb-2 ">
                 <div className="col-4">
@@ -79,7 +78,55 @@ const ManageCategory = () => {
                   </button>
                 </div>
               </div>
-            ))}
+            ))} */}
+          {/*  */}
+
+          {/*  */}
+          {/*  */}
+        </div>
+      </div>
+
+      <div className="row justify-content-center">
+        <div className="col-md-8 col-sm-12 col-xs-12">
+          <table class="table table-responsive-sm table-hover table-dark table-striped">
+            <caption>List of Categories</caption>{" "}
+            <thead>
+              <tr className="text-center">
+                <th scope="col" className="border border-info h4">
+                  Categories
+                </th>
+                <th scope="col" className="border border-info h4">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories &&
+                categories.map((category, index) => (
+                  <tr key={index} className="text-center">
+                    <td className="border border-info">{category.name}</td>
+                    <td className="border border-info">
+                      <Link
+                        className="btn btn-success btn-sm"
+                        to={`/admin/category/update/${category._id}`}
+                      >
+                        Update
+                      </Link>
+                      <span className="mx-1"></span>
+                      <Link
+                        onClick={() => {
+                          deleteThisCategory(category._id);
+                        }}
+                        className="btn btn-danger btn-sm"
+                        to="#!"
+                      >
+                        Delete
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </Base>
