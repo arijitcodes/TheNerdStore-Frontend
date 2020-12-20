@@ -51,7 +51,6 @@ const AddProduct = () => {
         setValues({ ...values, error: data.err ? data.err : data.error });
       } else {
         setValues({ ...values, categories: data, formData: new FormData() });
-        console.log(categories);
       }
     });
   };
