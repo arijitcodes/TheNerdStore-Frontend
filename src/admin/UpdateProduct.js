@@ -138,7 +138,7 @@ const UpdateProduct = ({ match }) => {
   // Create Product Form
   const createProductForm = () => (
     <form>
-      <span>Post photo</span>
+      <span>Update photo</span>
       <div className="form-group">
         <label className="btn btn-block btn-success">
           <input
