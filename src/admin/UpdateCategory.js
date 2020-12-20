@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 // Components and Methods
 import Base from "../core/Base";
@@ -10,6 +10,7 @@ const UpdateCategory = ({ match }) => {
   const [category, setCategory] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const { user, token } = isAuthenticated();
 
@@ -55,6 +56,9 @@ const UpdateCategory = ({ match }) => {
         } else {
           setCategory(data.name);
           setSuccess(true);
+          setTimeout(() => {
+            setRedirect(true);
+          }, 2000);
         }
       })
       .catch((error) => {
@@ -123,6 +127,7 @@ const UpdateCategory = ({ match }) => {
           {successMessage()}
           {errorMessage()}
           {categoryForm()}
+          {redirect && <Redirect to="/admin/categories" />}
         </div>
       </div>
     </Base>
