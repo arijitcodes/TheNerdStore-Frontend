@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 // Components and Methods
 import Base from "../core/Base";
@@ -27,6 +27,7 @@ const UpdateProduct = ({ match }) => {
     getARedirect: false,
     formData: "",
   });
+  const [redirect, setRedirect] = useState(false);
 
   const {
     name,
@@ -51,7 +52,6 @@ const UpdateProduct = ({ match }) => {
   const preload = (productId) => {
     getAProduct(productId).then((data) => {
       if (data.err || data.error) {
-        alert("ERROR");
         setValues({ ...values, error: data.err ? data.err : data.error });
       } else {
         setValues({
@@ -106,6 +106,10 @@ const UpdateProduct = ({ match }) => {
         }
       })
       .catch((error) => console.log(error));
+
+    setTimeout(() => {
+      setRedirect(true);
+    }, 2000);
   };
 
   // Handle Change Method
@@ -211,7 +215,7 @@ const UpdateProduct = ({ match }) => {
       <button
         type="submit"
         onClick={onSubmit}
-        className="btn btn-outline-success mb-3"
+        className="btn btn-outline-info mb-3"
       >
         Update Product
       </button>
@@ -232,6 +236,7 @@ const UpdateProduct = ({ match }) => {
           {successMessage()}
           {errorMessage()}
           {createProductForm()}
+          {redirect && <Redirect to="/admin/products" />}
         </div>
       </div>
     </Base>
