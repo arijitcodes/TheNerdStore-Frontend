@@ -17,7 +17,7 @@ const Menu = ({ history }) => (
     <ul className="nav nav-tabs bg-dark">
       <li className="nav-item">
         <Link style={currentTab(history, "/")} className="nav-link" to="/">
-          Home
+          <i className="fas fa-home pr-1"></i> Home
         </Link>
       </li>
       <li className="nav-item">
@@ -26,7 +26,7 @@ const Menu = ({ history }) => (
           className="nav-link"
           to="/cart"
         >
-          Cart
+          <i className="fas fa-shopping-cart pr-1"></i> Cart
         </Link>
       </li>
       {isAuthenticated() && isAuthenticated().user.role === 0 && (
@@ -36,7 +36,7 @@ const Menu = ({ history }) => (
             className="nav-link"
             to="/user/dashboard"
           >
-            User Dashboard
+            <i className="fas fa-chalkboard pr-1"></i> Dashboard
           </Link>
         </li>
       )}
@@ -47,7 +47,7 @@ const Menu = ({ history }) => (
             className="nav-link"
             to="/admin/dashboard"
           >
-            Admin Dashboard
+            <i className="fas fa-chalkboard pr-1"></i> Dashboard
           </Link>
         </li>
       )}
@@ -59,7 +59,7 @@ const Menu = ({ history }) => (
               className="nav-link"
               to="/signup"
             >
-              Signup
+              <i className="fas fa-user-plus pr-1"></i> Signup
             </Link>
           </li>
           <li className="nav-item">
@@ -68,7 +68,7 @@ const Menu = ({ history }) => (
               className="nav-link"
               to="/signin"
             >
-              Sign In
+              <i className="fas fa-sign-in-alt pr-1"></i> Sign In
             </Link>
           </li>
         </>
@@ -84,13 +84,14 @@ const Menu = ({ history }) => (
           </Link> */}
           <span
             className="nav-link text-warning"
+            style={{ cursor: "pointer" }}
             onClick={() => {
               signout(() => {
                 history.push("/");
               });
             }}
           >
-            Signout
+            Signout <i className="fas fa-sign-out-alt"></i>
           </span>
         </li>
       )}
