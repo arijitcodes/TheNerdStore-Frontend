@@ -11,6 +11,7 @@ import UserDashboard from "./user/UserDashBoard";
 import AdminDashboard from "./user/AdminDashBoard";
 import AddCategory from "./admin/AddCategory";
 import ManageCategory from "./admin/ManageCategory";
+import AddProduct from "./admin/AddProduct";
 
 const Routes = () => {
   return (
@@ -30,6 +31,11 @@ const Routes = () => {
           path="/admin/categories"
           exact
           component={ManageCategory}
+        />
+        <AdminRoutes
+          path="/admin/create/product"
+          exact
+          component={AddProduct}
         />
       </Switch>
     </Router>

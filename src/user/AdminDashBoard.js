@@ -10,6 +10,7 @@ const AdminDashBoard = () => {
     user: { name, email, role },
   } = isAuthenticated();
 
+  // Left Side Menu of Admin Dashboard
   const adminLeftSide = () => {
     return (
       <div className="card">
@@ -27,7 +28,7 @@ const AdminDashBoard = () => {
           </li>
           <li className="list-group-item">
             <Link to="/admin/create/product" className="nav-link text-success">
-              Create Products
+              Create Product
             </Link>
           </li>
           <li className="list-group-item">
@@ -45,6 +46,7 @@ const AdminDashBoard = () => {
     );
   };
 
+  // Right Side Display Box of Admin Dashboard
   const adminRightSide = () => {
     return (
       <div className="card mb-4">
