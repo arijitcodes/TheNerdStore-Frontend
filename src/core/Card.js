@@ -1,18 +1,27 @@
 import React from "react";
 
-// Components
+// Components and Methods
 import ImageHelper from "./helper/ImageHelper";
+import { addItemToCart } from "./helper/cartHelper";
 
 const Card = ({ product, addToCart = true, removeFromCart = false }) => {
   const cardTitle = product ? product.name : "A photo from pexels";
   const cardDescription = product ? product.description : "Default Description";
   const cardPrice = product ? product.price : "Default";
 
+  // Adds the Product, that this Card is holding, into Cart Localstorage
+  const addProductToCart = () => {
+    addItemToCart(product, () => {
+      alert("Product Added to cart. To checkout, visit Cart Page.");
+    });
+  };
+
+  // Show add to cart button
   const showAddToCart = () => {
     return (
       addToCart && (
         <button
-          onClick={() => {}}
+          onClick={addProductToCart}
           className="btn btn-block btn-outline-success mt-2 mb-2"
         >
           Add to Cart
@@ -21,6 +30,7 @@ const Card = ({ product, addToCart = true, removeFromCart = false }) => {
     );
   };
 
+  // Show Remove from Cart Button
   const showRemoveFromCart = () => {
     return (
       removeFromCart && (

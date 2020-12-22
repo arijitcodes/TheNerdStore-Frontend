@@ -7,5 +7,9 @@ export const getProducts = () => {
     .then((response) => {
       return response.json();
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      alert("Error: " + error);
+      console.log(error);
+      return [{ error: "error" }];
+    });
 };
