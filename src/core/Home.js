@@ -3,13 +3,14 @@ import "../styles.css";
 
 // Components
 import Base from "./Base";
+import Card from "./Card";
 
 const Home = () => {
   return (
     <Base title="Home Page" description="Welcome to My Store">
-      <div className="row">
+      <div className="row text-center">
         <div className="col-4">
-          <button className="btn btn-success">TEST</button>
+          <Card />
         </div>
         <div className="col-4">
           <button className="btn btn-success">TEST</button>
