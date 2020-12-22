@@ -2,9 +2,17 @@ import React from "react";
 
 // Components and Methods
 import ImageHelper from "./helper/ImageHelper";
-import { addItemToCart } from "./helper/cartHelper";
+import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
 
-const Card = ({ product, addToCart = true, removeFromCart = false }) => {
+const Card = ({
+  product,
+  addToCart = true,
+  removeFromCart = false,
+  setReload = (f) => {
+    return f;
+  },
+  reload = undefined,
+}) => {
   const cardTitle = product ? product.name : "A photo from pexels";
   const cardDescription = product ? product.description : "Default Description";
   const cardPrice = product ? product.price : "Default";
@@ -35,7 +43,10 @@ const Card = ({ product, addToCart = true, removeFromCart = false }) => {
     return (
       removeFromCart && (
         <button
-          onClick={() => {}}
+          onClick={() => {
+            removeItemFromCart(product._id);
+            setReload(!reload);
+          }}
           className="btn btn-block btn-outline-danger mt-2 mb-2"
         >
           Remove from cart

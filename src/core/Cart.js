@@ -8,10 +8,11 @@ import { loadCart } from "./helper/cartHelper";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     setProducts(loadCart());
-  }, []);
+  }, [reload]);
 
   // Load All Products from CART
   const loadAllProducts = () => {
@@ -19,7 +20,7 @@ const Cart = () => {
       <div>
         <h2>For Load All Products</h2>
         <div className="row text-center">
-          {products &&
+          {products && products.length > 0 ? (
             products.map((product, index) => (
               <div className="col-md-6 col-sm-12">
                 <Card
@@ -27,9 +28,14 @@ const Cart = () => {
                   product={product}
                   addToCart={false}
                   removeFromCart={true}
+                  setReload={setReload}
+                  reload={reload}
                 />
               </div>
-            ))}
+            ))
+          ) : (
+            <div className="col text-warning h3">Cart is Empty!</div>
+          )}
         </div>
       </div>
     );
