@@ -45,3 +45,13 @@ export const removeItemFromCart = (productId) => {
 
   return cart;
 };
+
+// Empty Out Cart - to be used after Order Successfull
+export const emptyCart = (next) => {
+  if (typeof window !== undefined) {
+    if (localStorage.getItem("cart")) {
+      localStorage.removeItem("cart");
+      next();
+    }
+  }
+};
