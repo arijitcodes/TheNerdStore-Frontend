@@ -89,6 +89,9 @@ const ManageProducts = () => {
                       Products
                     </th>
                     <th scope="col" className="border border-info h4">
+                      Stock
+                    </th>
+                    <th scope="col" className="border border-info h4">
                       Actions
                     </th>
                   </tr>
@@ -97,20 +100,30 @@ const ManageProducts = () => {
                   {products &&
                     products.map((product, index) => (
                       <tr key={index} className="text-center">
-                        <td className="border border-info">{product.name}</td>
-                        <td className="border border-info">
+                        <td className="border border-info align-middle">
+                          {product.name}
+                        </td>
+                        <td className="border border-info align-middle">
+                          {product.stock > 0 ? (
+                            product.stock
+                          ) : (
+                            <span className="btn btn-danger">
+                              {product.stock}
+                            </span>
+                          )}
+                        </td>
+                        <td className="border border-info align-middle">
                           <Link
-                            className="btn btn-success btn-sm"
+                            className="btn btn-success btn-sm m-1"
                             to={`/admin/product/update/${product._id}`}
                           >
                             Update
                           </Link>
-                          <span className="mx-1"></span>
                           <Link
                             onClick={() => {
                               deleteThisProduct(product._id);
                             }}
-                            className="btn btn-danger btn-sm"
+                            className="btn btn-danger btn-sm m-1"
                             to="#!"
                           >
                             Delete
