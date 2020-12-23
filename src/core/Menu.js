@@ -17,7 +17,7 @@ const Menu = ({ history }) => (
     {/* <div className="row">
     <div className="col-12"> */}
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-      <Link to="/" className="nav-link" style={currentTab(history, "/")}>
+      <Link to="/" className="nav-link pl-0" style={currentTab(history, "/")}>
         <h4 className="my-auto text-white">
           <i className="fas fa-laptop-code rounded p-2 mr-2 bg-info"></i>
           The NerdStore

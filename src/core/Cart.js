@@ -19,7 +19,7 @@ const Cart = () => {
   const loadAllProducts = () => {
     return (
       <div>
-        <h2>For Load All Products</h2>
+        <h2>Your Items:</h2>
         <div className="row text-center">
           {products && products.length > 0 ? (
             products.map((product, index) => (
