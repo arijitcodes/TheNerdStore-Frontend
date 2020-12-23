@@ -19,7 +19,7 @@ const Menu = ({ history }) => (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
       <Link to="/" className="nav-link" style={currentTab(history, "/")}>
         <h4 className="my-auto text-white">
-          <i className="fas fa-laptop-code rounded-circle p-2 mr-2 bg-info"></i>
+          <i className="fas fa-laptop-code rounded p-2 mr-2 bg-info"></i>
           The NerdStore
         </h4>
       </Link>
