@@ -17,7 +17,11 @@ export const addItemToCart = (item, next) => {
       // If found, incrementing count
       cart.map((product, index) => {
         if (product._id === item._id) {
-          cart[index].count++;
+          if (item.stock <= product.count) {
+            alert("Can't add More.");
+          } else {
+            cart[index].count++;
+          }
           productExistsInCart = true;
         }
       });
