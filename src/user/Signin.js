@@ -124,7 +124,7 @@ const Signin = () => {
   };
 
   return (
-    <Base title="Sign In page" description="A page for Sign In">
+    <Base title="Sign In" description="Sign In to your account">
       {loadingMessage()}
       {errorMessage()}
       {signInForm()}

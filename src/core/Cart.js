@@ -52,7 +52,7 @@ const Cart = () => {
   };
 
   return (
-    <Base title="Cart Page" description="Check you Shopping Cart">
+    <Base title="Cart" description="Check you Shopping Cart">
       <div className="row">
         <div className="col-6">{loadAllProducts()}</div>
         <div className="col-6">

@@ -88,7 +88,7 @@ const AddCategory = () => {
     <div>
       <Base
         title="Create Category"
-        description="You can create a New Product Category here"
+        description="Create a New Product Category"
         className="container bg-info p-4"
       >
         <div className="row bg-white rounded">
