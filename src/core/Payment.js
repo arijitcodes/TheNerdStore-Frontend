@@ -88,12 +88,20 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
           alert("Payment Success!");
           //   console.log(response);
 
-          // TODO: Empty Card
+          // Create Order
+          const orderData = {
+            products: products,
+            transaction_id: response.transaction.id,
+            amount: response.transaction.amount,
+          };
+          createOrder(userId, token, orderData);
+
+          // Empty Cart after Payment Success
           emptyCart(() => {
-            // console.log("Sustem Crashed while Cleaning up the Cart!");
+            // console.log("System Crashed while Cleaning up the Cart!");
           });
 
-          // Force Reload
+          // Force Reload Cart Component after the Cart is Empty
           setReload(!reload);
         })
         .catch((error) => {
@@ -108,7 +116,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
     let amount = 0;
     products &&
       products.map((product) => {
-        amount = amount + product.price;
+        amount = amount + product.price * product.count;
       });
 
     return amount;

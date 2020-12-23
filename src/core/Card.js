@@ -12,6 +12,7 @@ const Card = ({
     return f;
   },
   reload = undefined,
+  showCount = false,
 }) => {
   const cardTitle = product ? product.name : "A photo from pexels";
   const cardDescription = product ? product.description : "Default Description";
@@ -67,7 +68,10 @@ const Card = ({
         </div>
       </div>
       <div className="card-footer">
-        <p className="btn btn-success rounded  btn-sm px-4">$ {cardPrice}</p>
+        <p className="btn btn-success rounded btn-sm px-4">$ {cardPrice}</p>
+        {showCount && (
+          <span className="badge badge-info ml-2">x{product.count}</span>
+        )}
         <div className="row">
           <div className="col-12">{showAddToCart()}</div>
           <div className="col-12">{showRemoveFromCart()}</div>

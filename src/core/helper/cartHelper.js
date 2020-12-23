@@ -1,15 +1,36 @@
 // Add Products in Cart
 export const addItemToCart = (item, next) => {
   let cart = [];
+  let productExistsInCart = false;
+
   if (typeof window !== undefined) {
-    if (localStorage.getItem("cart")) {
-      cart = JSON.parse(localStorage.getItem("cart"));
+    // Setting count = 1 for any item to add
+    if (!item.count) {
+      item.count = 1;
     }
 
-    cart.push({
-      ...item,
-    });
+    // Checking if cart already exists in LocalStorage
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
 
+      // Trying to find if item is already there
+      // If found, incrementing count
+      cart.map((product, index) => {
+        if (product._id === item._id) {
+          cart[index].count++;
+          productExistsInCart = true;
+        }
+      });
+    }
+
+    // If product Does NOT exists in the cart already, push it in cart
+    if (!productExistsInCart) {
+      cart.push({
+        ...item,
+      });
+    }
+
+    // Set cart in Local Storage
     localStorage.setItem("cart", JSON.stringify(cart));
     next();
   }

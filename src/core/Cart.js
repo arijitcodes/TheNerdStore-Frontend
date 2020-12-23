@@ -30,6 +30,7 @@ const Cart = () => {
                   removeFromCart={true}
                   setReload={setReload}
                   reload={reload}
+                  showCount={true}
                 />
               </div>
             ))
