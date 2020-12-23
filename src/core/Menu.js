@@ -124,8 +124,8 @@ const Menu = ({ history }) => (
               target="_blank"
               className="nav-link text-white"
             >
-              <i className="fab fa-github"></i> GitHub{" "}
-              <i className="fas fa-external-link-alt"></i>
+              <i className="fab fa-github pr-1"></i> GitHub
+              <i className="fas fa-external-link-alt pl-1"></i>
             </a>
           </li>
         </ul>
