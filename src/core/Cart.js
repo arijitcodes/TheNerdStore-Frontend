@@ -5,6 +5,7 @@ import "../styles.css";
 import Base from "./Base";
 import Card from "./Card";
 import { loadCart } from "./helper/cartHelper";
+import Payment from "./Payment";
 
 const Cart = () => {
   const [products, setProducts] = useState([]);
@@ -22,9 +23,8 @@ const Cart = () => {
         <div className="row text-center">
           {products && products.length > 0 ? (
             products.map((product, index) => (
-              <div className="col-md-6 col-sm-12">
+              <div className="col-md-6 col-sm-12" key={index}>
                 <Card
-                  key={index}
                   product={product}
                   addToCart={false}
                   removeFromCart={true}
@@ -54,7 +54,10 @@ const Cart = () => {
     <Base title="Cart Page" description="Check you Shopping Cart">
       <div className="row">
         <div className="col-6">{loadAllProducts()}</div>
-        <div className="col-6">{loadCheckout()}</div>
+        <div className="col-6">
+          {/* {loadCheckout()} */}
+          <Payment products={products} setReload={setReload} />
+        </div>
       </div>
     </Base>
   );
