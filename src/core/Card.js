@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Components and Methods
 import ImageHelper from "./helper/ImageHelper";
@@ -68,14 +68,34 @@ const Card = ({
         </div>
       </div>
       <div className="card-footer">
-        <p className="btn btn-success rounded btn-sm px-4">$ {cardPrice}</p>
-        {showCount && (
-          <span className="badge badge-info ml-2">x{product.count}</span>
-        )}
         <div className="row">
-          <div className="col-12">{showAddToCart()}</div>
-          <div className="col-12">{showRemoveFromCart()}</div>
+          <div className="col">
+            <p className="btn btn-success rounded btn-sm px-4">$ {cardPrice}</p>
+            {showCount && (
+              <span className="badge badge-info ml-2">x{product.count}</span>
+            )}
+          </div>
+          {!showCount &&
+            (product.stock > 0 ? (
+              <div className="col">
+                <p className="btn btn-success btn-sm">
+                  In Stock ({product.stock} left)
+                </p>
+              </div>
+            ) : (
+              <div className="col">
+                <p className="btn btn-danger btn-sm">Out of Stock</p>
+              </div>
+            ))}
         </div>
+        {product.stock && product.stock > 0 ? (
+          <div className="row">
+            <div className="col-12">{showAddToCart()}</div>
+            <div className="col-12">{showRemoveFromCart()}</div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
