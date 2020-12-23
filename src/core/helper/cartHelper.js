@@ -51,7 +51,7 @@ export const emptyCart = (next) => {
   if (typeof window !== undefined) {
     if (localStorage.getItem("cart")) {
       localStorage.removeItem("cart");
-      next();
     }
   }
+  next();
 };
