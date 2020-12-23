@@ -81,7 +81,7 @@ const ManageProducts = () => {
 
           <div className="row justify-content-center">
             <div className="col-md-8 col-sm-12 col-xs-12">
-              <table class="table table-responsive-sm table-hover table-dark table-striped">
+              <table className="table table-responsive-sm table-hover table-dark table-striped">
                 <caption>List of Products</caption>{" "}
                 <thead>
                   <tr className="text-center">
