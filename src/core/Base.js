@@ -11,10 +11,11 @@ const Base = ({
     <div>
       <Menu />
       <div className="container-fluid">
-        <div className="jumbotron bg-dark text-white text-center">
+        <div className="jumbotron bg-dark text-white text-center m-0 py-4">
           <h2 className="display-4">{title}</h2>
           <p className="lead">{description}</p>
         </div>
+        <hr className="border border-light" />
         <div className={className}>{children}</div>
       </div>
       <footer className="footer bg-dark mt-auto py-3">
