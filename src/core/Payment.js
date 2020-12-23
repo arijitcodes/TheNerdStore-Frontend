@@ -60,7 +60,10 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
               </button>
             </div>
           ) : (
-            <h3>Please Log In to Complete Payment!</h3>
+            // <h3 className="text-danger">Please Log In to Complete Payment!</h3>
+            <div className="alert alert-danger">
+              Please Log In to Complete Payment!
+            </div>
           )
         ) : (
           <h3></h3>
@@ -86,7 +89,12 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
           //   console.log(response);
 
           // TODO: Empty Card
+          emptyCart(() => {
+            // console.log("Sustem Crashed while Cleaning up the Cart!");
+          });
+
           // Force Reload
+          setReload(!reload);
         })
         .catch((error) => {
           setInfo({ loading: false, success: false });
