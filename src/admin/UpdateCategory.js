@@ -93,9 +93,10 @@ const UpdateCategory = ({ match }) => {
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <p className="lead mt-2">Update the Category</p>
+          <label>Category Name:</label>
           <input
             type="text"
-            className="form-control my-3"
+            className="form-control mb-3"
             onChange={handleChange}
             value={category}
             autoFocus

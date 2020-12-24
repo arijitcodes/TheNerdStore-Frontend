@@ -108,7 +108,7 @@ const AddProduct = () => {
   // Create Product Form
   const createProductForm = () => (
     <form>
-      <span>Post photo</span>
+      <span>Add Photo</span>
       <div className="form-group">
         <label className="btn btn-block btn-success">
           <input
@@ -122,6 +122,7 @@ const AddProduct = () => {
         </label>
       </div>
       <div className="form-group">
+        <label>Product Name</label>
         <input
           onChange={handleChange("name")}
           name="photo"
@@ -132,6 +133,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
+        <label>Product Description</label>
         <textarea
           onChange={handleChange("description")}
           name="photo"
@@ -142,6 +144,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
+        <label>Price</label>
         <input
           onChange={handleChange("price")}
           type="number"
@@ -152,6 +155,7 @@ const AddProduct = () => {
         />
       </div>
       <div className="form-group">
+        <label>Product Category</label>
         <select
           onChange={handleChange("category")}
           className="form-control"
@@ -168,6 +172,7 @@ const AddProduct = () => {
         </select>
       </div>
       <div className="form-group">
+        <label>Stock</label>
         <input
           onChange={handleChange("stock")}
           type="number"

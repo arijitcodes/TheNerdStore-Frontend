@@ -59,10 +59,11 @@ const AddCategory = () => {
       <>
         <form onSubmit={onSubmit}>
           <div className="form-group">
-            <p className="lead">Enter the Category</p>
+            <p className="lead mt-3">Enter the Category</p>
+            <label>Category Name:</label>
             <input
               type="text"
-              className="form-control my-3"
+              className="form-control mb-3"
               onChange={handleChange}
               value={name}
               autoFocus
@@ -75,7 +76,7 @@ const AddCategory = () => {
           </div>
         </form>
 
-        <div className="mt-5">
+        <div className="mt-3">
           <Link className="btn btn-sm btn-success mb-3" to="/admin/dashboard">
             Admin Home
           </Link>
