@@ -80,3 +80,17 @@ export const emptyCart = (next) => {
   }
   next();
 };
+
+// Check Cart
+export const checkCart = () => {
+  let cart = [];
+
+  if (typeof window !== undefined) {
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+      return cart.length;
+    } else {
+      return null;
+    }
+  }
+};

@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // Components and Methods
 import ImageHelper from "./helper/ImageHelper";
-import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
+import {
+  addItemToCart,
+  checkCart,
+  removeItemFromCart,
+} from "./helper/cartHelper";
+
+// Context
+import CartContext from "./context/cartNotification/cartContext";
 
 const Card = ({
   product,
@@ -18,11 +25,17 @@ const Card = ({
   const cardDescription = product ? product.description : "Default Description";
   const cardPrice = product ? product.price : "Default";
 
+  const cartContext = useContext(CartContext);
+  const { setProductsInCart } = cartContext;
+
   // Adds the Product, that this Card is holding, into Cart Localstorage
-  const addProductToCart = () => {
+  const addProductToCart = async () => {
     addItemToCart(product, () => {
       alert("Product Added to cart. To checkout, visit Cart Page.");
     });
+
+    // Setting NumberOfProductsInCart value in Global Cart Notification State
+    setProductsInCart(checkCart());
   };
 
   // Show add to cart button
@@ -46,6 +59,7 @@ const Card = ({
         <button
           onClick={() => {
             removeItemFromCart(product._id);
+            setProductsInCart(checkCart());
             setReload(!reload);
           }}
           className="btn btn-block btn-outline-danger mt-2 mb-2"
