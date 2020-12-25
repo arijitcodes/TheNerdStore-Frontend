@@ -1,7 +1,7 @@
 import { API } from "../../backend";
 
+//
 // Category Calls
-
 // Create Category
 export const createCategory = (userId, token, category) => {
   return fetch(`${API}/category/create/${userId}`, {
@@ -76,8 +76,8 @@ export const deleteCategory = (categoryId, userId, token) => {
 };
 //
 
+//
 // Product Calls
-
 // Create Product
 export const createProduct = (userId, token, product) => {
   return fetch(`${API}/product/create/${userId}`, {
@@ -136,6 +136,23 @@ export const updateProduct = (productId, userId, token, product) => {
 export const deleteProduct = (productId, userId, token) => {
   return fetch(`${API}/product/${productId}/${userId}`, {
     method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
+//
+// Order Calls
+// Get All Orders - Admin
+export const getAllOrders = (userId, token) => {
+  return fetch(`${API}/order/all/${userId}`, {
+    method: "GET",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
