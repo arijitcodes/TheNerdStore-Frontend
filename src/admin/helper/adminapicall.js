@@ -178,3 +178,34 @@ export const getOrder = (orderId, userId, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Get All Available Status Options
+export const getAllStatusOptions = (userId, token) => {
+  return fetch(`${API}/order/status/${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
+// Update Order Status
+export const updateOrderStatus = (orderId, userId, token, status) => {
+  return fetch(`${API}/order/${orderId}/status/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ status }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
