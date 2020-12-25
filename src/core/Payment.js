@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 
+// Context
+import CartContext from "./context/cartNotification/cartContext";
+
 // Components & Methods
-import { emptyCart, loadCart } from "./helper/cartHelper";
+import { emptyCart, loadCart, checkCart } from "./helper/cartHelper";
 import { getMeToken, processPayment } from "./helper/paymentHelper";
 import { createOrder } from "./helper/orderHelper";
 import { isAuthenticated } from "../auth/helper";
@@ -19,6 +22,10 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
 
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
+
+  const cartContext = useContext(CartContext);
+
+  const { setProductsInCart } = cartContext;
 
   useEffect(() => {
     getToken(userId, token);
@@ -100,6 +107,9 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
           emptyCart(() => {
             // console.log("System Crashed while Cleaning up the Cart!");
           });
+
+          // Update Global Cart Values
+          setProductsInCart(checkCart());
 
           // Force Reload Cart Component after the Cart is Empty
           setReload(!reload);
