@@ -23,7 +23,7 @@ const Cart = () => {
         <div className="row text-center">
           {products && products.length > 0 ? (
             products.map((product, index) => (
-              <div className="col-md-6 col-sm-12" key={index}>
+              <div className="col-md-6 col-sm-12 mt-2" key={index}>
                 <Card
                   product={product}
                   addToCart={false}

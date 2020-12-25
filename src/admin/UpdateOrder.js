@@ -107,7 +107,7 @@ const UpdateOrder = ({ match }) => {
         </ul>
       </div>
       {order.products.map((product, index) => (
-        <div className="col-md-6 col-sm-12 mt-2 mt-sm-0" key={index}>
+        <div className="col-md-6 col-sm-12 mt-2" key={index}>
           <ul className="list-group custom-transparent-list-info">
             <li className="list-group-item">
               <span className="text-muted mr-2">Product Name:</span>
