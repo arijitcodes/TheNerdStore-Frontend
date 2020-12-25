@@ -20,6 +20,7 @@ import UpdateProduct from "./admin/UpdateProduct";
 import UpdateCategory from "./admin/UpdateCategory";
 import Cart from "./core/Cart";
 import ManageOrders from "./admin/ManageOrders";
+import UpdateOrder from "./admin/UpdateOrder";
 
 const Routes = () => {
   return (
@@ -71,6 +72,11 @@ const Routes = () => {
             component={UpdateProduct}
           />
           <AdminRoutes path="/admin/orders" exact component={ManageOrders} />
+          <AdminRoutes
+            path="/admin/order/update/:orderId"
+            exact
+            component={UpdateOrder}
+          />
         </Switch>
       </Router>
     </CartState>

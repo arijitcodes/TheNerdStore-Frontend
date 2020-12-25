@@ -26,6 +26,7 @@ const ManageOrders = () => {
     });
   };
 
+  // Set Status Display Button's Outline Color Property based on Status Value
   const statusButton = (status) => {
     switch (status.toLowerCase()) {
       case "recieved":
