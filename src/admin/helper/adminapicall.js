@@ -163,3 +163,18 @@ export const getAllOrders = (userId, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Get An Order
+export const getOrder = (orderId, userId, token) => {
+  return fetch(`${API}/order/${orderId}/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

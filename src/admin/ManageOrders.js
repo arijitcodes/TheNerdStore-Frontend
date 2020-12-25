@@ -5,6 +5,7 @@ import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { getAllOrders } from "./helper/adminapicall";
 import { Link } from "react-router-dom";
+import { statusButton } from "./helper/orderHelper";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -27,7 +28,7 @@ const ManageOrders = () => {
   };
 
   // Set Status Display Button's Outline Color Property based on Status Value
-  const statusButton = (status) => {
+  /* const statusButton = (status) => {
     switch (status.toLowerCase()) {
       case "recieved":
         return "warning";
@@ -50,7 +51,7 @@ const ManageOrders = () => {
         return "info";
         break;
     }
-  };
+  }; */
 
   // Orders Display Table
   const ordersTable = () => (
@@ -92,13 +93,14 @@ const ManageOrders = () => {
                     {new Date(order.createdAt).toLocaleString()}
                   </td>
                   <td className="border border-info align-middle">
-                    <span
+                    {/* <span
                       className={`btn btn-sm rounded btn-outline-${statusButton(
                         order.status
                       )}`}
                     >
                       {order.status}
-                    </span>
+                    </span> */}
+                    {statusButton(order.status)}
                   </td>
                   <td className="border border-info align-middle">
                     <Link
