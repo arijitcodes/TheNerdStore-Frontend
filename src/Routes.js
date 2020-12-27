@@ -21,6 +21,7 @@ import UpdateCategory from "./admin/UpdateCategory";
 import Cart from "./core/Cart";
 import ManageOrders from "./admin/ManageOrders";
 import UpdateOrder from "./admin/UpdateOrder";
+import Orders from "./core/Orders";
 
 const Routes = () => {
   return (
@@ -31,6 +32,7 @@ const Routes = () => {
           <Route path="/cart" exact component={Cart} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/signin" exact component={Signin} />
+          <Route path="/orders" exact component={Orders} />
           <PrivateRoutes
             path="/user/dashboard"
             exact
