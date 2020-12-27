@@ -22,6 +22,7 @@ import Cart from "./core/Cart";
 import ManageOrders from "./admin/ManageOrders";
 import UpdateOrder from "./admin/UpdateOrder";
 import Orders from "./core/Orders";
+import Profile from "./user/Profile";
 
 const Routes = () => {
   return (
@@ -38,6 +39,7 @@ const Routes = () => {
             component={UserDashboard}
           />
           <PrivateRoutes path="/orders" exact component={Orders} />
+          <PrivateRoutes path="/profile" exact component={Profile} />
           <AdminRoutes
             path="/admin/dashboard"
             exact
