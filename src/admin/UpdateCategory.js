@@ -122,6 +122,9 @@ const UpdateCategory = ({ match }) => {
         <Link className="btn btn-md btn-dark mb-3" to="/admin/dashboard">
           Admin Home
         </Link>
+        <Link to="/admin/categories" className="btn btn-md btn-dark mb-3 ml-3">
+          Manage Categories
+        </Link>
       </div>
       <div className="row bg-dark text-white rounded">
         <div className="col-md-8 offset-2 my-2">

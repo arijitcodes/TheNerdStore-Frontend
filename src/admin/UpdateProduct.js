@@ -236,6 +236,9 @@ const UpdateProduct = ({ match }) => {
       <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
         Admin Home
       </Link>
+      <Link to="/admin/products" className="btn btn-md btn-dark mb-3 ml-3">
+        Manage Products
+      </Link>
       <div className="row bg-dark text-white rounded">
         <div className="col-md-8 offset-md-2">
           {successMessage()}
