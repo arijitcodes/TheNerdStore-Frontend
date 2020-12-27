@@ -48,7 +48,9 @@ const UpdateOrder = ({ match }) => {
       <div className="row">
         <div className="col">
           <ul className="list-group custom-transparent-list-info">
-            <li className="list-group-item text-light h4">Order Details</li>
+            <li className="list-group-item text-light h4 bordered border-warning">
+              Order Details
+            </li>
           </ul>
         </div>
       </div>
@@ -77,7 +79,9 @@ const UpdateOrder = ({ match }) => {
       <div className="row">
         <div className="col">
           <ul className="list-group custom-transparent-list-info">
-            <li className="list-group-item text-light h4 ">User Details</li>
+            <li className="list-group-item text-light h4 bordered border-warning">
+              User Details
+            </li>
           </ul>
         </div>
       </div>
@@ -92,6 +96,9 @@ const UpdateOrder = ({ match }) => {
           <span className="text-muted mr-2">Last Name:</span>{" "}
           {order.user.lastName}
         </li>
+        <li className="list-group-item">
+          <span className="text-muted mr-2">Email:</span> {order.user.email}
+        </li>
       </ul>
     </>
   );
@@ -101,7 +108,7 @@ const UpdateOrder = ({ match }) => {
     <div className="row">
       <div className="col-12">
         <ul className="list-group custom-transparent-list-info">
-          <li className="list-group-item text-light h4">
+          <li className="list-group-item text-light h4 bordered border-warning">
             Products Ordered ({order.products.length}):
           </li>
         </ul>
@@ -130,7 +137,7 @@ const UpdateOrder = ({ match }) => {
   // Order Status
   const orderStatus = () => (
     <ul className="list-group custom-transparent-list-info">
-      <li className="list-group-item text-light h4">
+      <li className="list-group-item text-light h4 bordered border-warning">
         <div className="row">
           <div className="col align-middle">
             Order Status: {statusButton(order.status)}
