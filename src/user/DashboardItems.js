@@ -3,7 +3,7 @@ import React from "react";
 // Components
 import DashboardItem from "./DashboardItem";
 
-const DashboardItems = ({ admin }) => {
+const DashboardItems = () => {
   return (
     <div className="row">
       <DashboardItem

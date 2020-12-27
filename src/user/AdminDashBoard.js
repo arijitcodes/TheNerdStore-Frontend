@@ -85,7 +85,7 @@ const AdminDashBoard = () => {
     <Base
       title="Admin Dashboard"
       description="Welcome to the Admin Area"
-      className="container bg-success p-4"
+      className="container bg-success p-4 my-4"
     >
       <div className="row">
         <div className="col-lg-4 col-md-6 col-sm-12 my-1">
