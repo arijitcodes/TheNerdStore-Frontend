@@ -32,12 +32,12 @@ const Routes = () => {
           <Route path="/cart" exact component={Cart} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/signin" exact component={Signin} />
-          <Route path="/orders" exact component={Orders} />
           <PrivateRoutes
             path="/user/dashboard"
             exact
             component={UserDashboard}
           />
+          <PrivateRoutes path="/orders" exact component={Orders} />
           <AdminRoutes
             path="/admin/dashboard"
             exact
