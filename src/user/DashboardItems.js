@@ -9,7 +9,7 @@ const DashboardItems = () => {
       <DashboardItem
         title="Profile"
         body="Your Profile"
-        icon="fas fa-user"
+        icon="far fa-user"
         link="/profile"
       />
 
