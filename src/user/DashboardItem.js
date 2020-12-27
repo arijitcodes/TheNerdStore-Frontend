@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-const DashboardItem = ({ title, body, icon, link = "#" }) => {
-  icon = icon + " align-middle";
+const DashboardItem = ({ title, body, icon, link = "#", admin = false }) => {
+  // icon = icon + " align-middle";
   const history = useHistory();
+
   return (
     <div
       className="col-lg-4 col-md-6 col-sm-6"
@@ -12,18 +13,24 @@ const DashboardItem = ({ title, body, icon, link = "#" }) => {
       }}
     >
       <div
-        className="card border-info mb-3"
+        className={
+          admin === true ? "card border-white mb-3" : "card border-info mb-3"
+        }
         style={{ background: "rgb(0,0,0,0)", cursor: "pointer" }}
       >
         {/* <div className="card-header">Header</div> */}
-        <div className="card-body text-info">
-          <div className="row">
+        <div
+          className={
+            admin === true ? "card-body text-white" : "card-body text-info"
+          }
+        >
+          <div className="row align-items-center">
             <div className="col text-center h1">
               <i className={icon}></i>
             </div>
             <div className="col">
               <h5 className="card-title">{title}</h5>
-              <p className="card-text">{body}</p>
+              <p className={admin === true ? "d-none" : "card-text"}>{body}</p>
             </div>
           </div>
         </div>

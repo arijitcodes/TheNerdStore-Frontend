@@ -3,7 +3,7 @@ import React from "react";
 // Components
 import DashboardItem from "./DashboardItem";
 
-const DashboardItems = () => {
+const DashboardItems = ({ admin }) => {
   return (
     <div className="row">
       <DashboardItem
@@ -11,6 +11,7 @@ const DashboardItems = () => {
         body="Your Profile"
         icon="fas fa-user"
         link="/profile"
+        admin={admin}
       />
 
       <DashboardItem
@@ -18,6 +19,7 @@ const DashboardItems = () => {
         body="Check your Cart"
         icon="fas fa-shopping-cart"
         link="/cart"
+        admin={admin}
       />
 
       <DashboardItem
@@ -25,6 +27,7 @@ const DashboardItems = () => {
         body="Check your Orders"
         icon="fas fa-boxes"
         link="/orders"
+        admin={admin}
       />
     </div>
   );

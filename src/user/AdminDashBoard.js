@@ -4,6 +4,7 @@ import React from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
+import DashboardItems from "./DashboardItems";
 
 const AdminDashBoard = () => {
   const {
@@ -49,21 +50,34 @@ const AdminDashBoard = () => {
   // Right Side Display Box of Admin Dashboard
   const adminRightSide = () => {
     return (
-      <div className="card mb-4">
-        <h4 className="card-header">Admin Information</h4>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <span className="badge badge-success mr-2">Name:</span> {name}
-          </li>
-          <li className="list-group-item">
-            <span className="badge badge-success mr-2">Email:</span> {email}
-          </li>
+      <>
+        <div className="row">
+          <div className="col">
+            <DashboardItems admin={true} />
+          </div>
+        </div>
 
-          <li className="list-group-item">
-            <span className="badge badge-danger mr-2">Admin Area</span>
-          </li>
-        </ul>
-      </div>
+        <div className="row">
+          <div className="col">
+            <div className="card mb-4">
+              <h4 className="card-header">Admin Information</h4>
+              <ul className="list-group">
+                <li className="list-group-item">
+                  <span className="badge badge-success mr-2">Name:</span> {name}
+                </li>
+                <li className="list-group-item">
+                  <span className="badge badge-success mr-2">Email:</span>{" "}
+                  {email}
+                </li>
+
+                <li className="list-group-item">
+                  <span className="badge badge-danger mr-2">Admin Area</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </>
     );
   };
 
@@ -77,7 +91,7 @@ const AdminDashBoard = () => {
         <div className="col-lg-4 col-md-6 col-sm-12 my-1">
           {adminLeftSide()}
         </div>
-        <div className="col-lg-8 col-md-6 col-sm-12 my-1">
+        <div className="col-lg-8 col-md-6 col-sm-12 my-1 mt-4 mt-md-1">
           {adminRightSide()}
         </div>
       </div>
