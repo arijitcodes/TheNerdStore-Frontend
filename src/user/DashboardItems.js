@@ -21,7 +21,7 @@ const DashboardItems = ({ admin }) => {
       />
 
       <DashboardItem
-        title="Orders"
+        title="Your Orders"
         body="Check your Orders"
         icon="fas fa-boxes"
         link="/orders"

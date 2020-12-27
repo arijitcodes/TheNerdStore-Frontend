@@ -108,7 +108,7 @@ const Orders = () => {
 
   return (
     <Base title="Orders" description="Check all of your orders">
-      <h3>Orders ({orders && orders.length}):</h3>
+      <h3>Your Orders ({orders && orders.length}):</h3>
       {orders.length > 0 ? displayOrders() : "Loading..."}
     </Base>
   );

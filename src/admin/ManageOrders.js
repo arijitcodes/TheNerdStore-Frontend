@@ -133,7 +133,7 @@ const ManageOrders = () => {
       <Link className="btn btn-info" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>
       </Link>
-      <h2 className="mt-2 mb-4">All Orders ({orders.length}) :</h2>
+      <h2 className="mt-2 mb-4">Manage all Orders ({orders.length}) :</h2>
       <div className="row">
         <div className="col-12">{ordersTable()}</div>
       </div>
