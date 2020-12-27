@@ -11,7 +11,6 @@ const DashboardItems = ({ admin }) => {
         body="Your Profile"
         icon="fas fa-user"
         link="/profile"
-        admin={admin}
       />
 
       <DashboardItem
@@ -19,7 +18,6 @@ const DashboardItems = ({ admin }) => {
         body="Check your Cart"
         icon="fas fa-shopping-cart"
         link="/cart"
-        admin={admin}
       />
 
       <DashboardItem
@@ -27,7 +25,6 @@ const DashboardItems = ({ admin }) => {
         body="Check your Orders"
         icon="fas fa-boxes"
         link="/orders"
-        admin={admin}
       />
     </div>
   );

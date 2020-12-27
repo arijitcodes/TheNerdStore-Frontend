@@ -53,7 +53,7 @@ const AdminDashBoard = () => {
       <>
         <div className="row">
           <div className="col">
-            <DashboardItems admin={true} />
+            <DashboardItems />
           </div>
         </div>
 

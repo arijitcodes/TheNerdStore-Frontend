@@ -1,9 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-const DashboardItem = ({ title, body, icon, link = "#", admin = false }) => {
+// Components and Methods
+import { isAuthenticated } from "../auth/helper";
+
+const DashboardItem = ({ title, body, icon, link = "#" }) => {
   // icon = icon + " align-middle";
   const history = useHistory();
+  const admin = isAuthenticated().user.role === 1 ? true : false;
 
   return (
     <div
