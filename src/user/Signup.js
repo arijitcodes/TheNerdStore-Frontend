@@ -8,13 +8,15 @@ import { signup } from "../auth/helper";
 const Signup = () => {
   const [values, setValues] = useState({
     name: "",
+    lastName: "",
     email: "",
     password: "",
+    password2: "",
     error: "",
     success: false,
   });
 
-  const { name, email, password, error, success } = values;
+  const { name, lastName, email, password, password2, error, success } = values;
 
   // Handle form fields value change
   const handleChange = (name) => (event) => {
@@ -25,7 +27,20 @@ const Signup = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password })
+    if (values.password !== values.password2) {
+      setValues({
+        ...values,
+        error: "Passwords do not match! Please type the passwords carefully!",
+      });
+      setTimeout(() => {
+        setValues({
+          ...values,
+          error: "",
+        });
+      }, 3000);
+      return;
+    }
+    signup({ name, lastName, email, password })
       .then((data) => {
         if (data.err || data.error) {
           setValues({
@@ -87,14 +102,30 @@ const Signup = () => {
         <div className="col-md-6 offset-sm-3 text-left">
           <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label className="text-light">Name</label>
-              <input
-                className="form-control"
-                onChange={handleChange("name")}
-                type="text"
-                value={name}
-                required
-              />
+              <div className="row">
+                <div className="col">
+                  <label className="text-light">First Name</label>
+                  <input
+                    className="form-control"
+                    onChange={handleChange("name")}
+                    type="text"
+                    value={name}
+                    placeholder="First Name"
+                    required
+                  />
+                </div>
+                <div className="col">
+                  <label className="text-light">Last Name</label>
+                  <input
+                    className="form-control"
+                    onChange={handleChange("lastName")}
+                    type="text"
+                    value={lastName}
+                    placeholder="Last Name"
+                    required
+                  />
+                </div>
+              </div>
             </div>
             <div className="form-group">
               <label className="text-light">Email</label>
@@ -103,18 +134,35 @@ const Signup = () => {
                 onChange={handleChange("email")}
                 type="email"
                 value={email}
+                placeholder="You Email"
                 required
               />
             </div>
             <div className="form-group">
-              <label className="text-light">Password</label>
-              <input
-                className="form-control"
-                onChange={handleChange("password")}
-                type="password"
-                value={password}
-                required
-              />
+              <div className="row">
+                <div className="col">
+                  <label className="text-light">Password</label>
+                  <input
+                    className="form-control"
+                    onChange={handleChange("password")}
+                    type="password"
+                    value={password}
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div className="col">
+                  <label className="text-light">Enter Password Again</label>
+                  <input
+                    className="form-control"
+                    onChange={handleChange("password2")}
+                    type="password"
+                    value={password2}
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+              </div>
             </div>
             <button type="submit" className="btn btn-success btn-block">
               Submit

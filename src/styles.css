@@ -9,7 +9,7 @@ body {
 }
 
 .custom-transparent-list-info > li {
-  background: rgb(0, 0, 0, 0);
+  background: rgb(0, 0, 0, 0.2);
   border-color: #5bc0de;
 }
 
