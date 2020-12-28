@@ -83,7 +83,7 @@ const ManageProducts = () => {
           <div className="col-md-8 col-sm-12">
             <input
               type="text"
-              placeholder="Search by Order ID/User/Date(YYYY-MM-DD)..."
+              placeholder="Search by Product Name..."
               className="form-control transparent text-light"
               style={{ background: "rgb(0,0,0,0)" }}
               ref={searchText}
