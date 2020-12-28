@@ -137,7 +137,7 @@ const ManageOrders = () => {
                       className="btn btn-danger btn-sm m-1"
                       to="#!"
                     >
-                      Delete
+                      Delete <i className="far fa-trash-alt d-none d-sm-inline" />
                     </Link> */}
                   </td>
                 </tr>

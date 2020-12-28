@@ -107,20 +107,21 @@ const ManageCategory = () => {
                     <td className="border border-info">{category.name}</td>
                     <td className="border border-info">
                       <Link
-                        className="btn btn-success btn-sm"
+                        className="btn btn-success btn-sm rounded"
                         to={`/admin/category/update/${category._id}`}
                       >
-                        Update
+                        Update <i className="far fa-edit d-none d-sm-inline" />
                       </Link>
                       <span className="mx-1"></span>
                       <Link
                         onClick={() => {
                           deleteThisCategory(category._id);
                         }}
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm rounded"
                         to="#!"
                       >
-                        Delete
+                        Delete{" "}
+                        <i className="far fa-trash-alt d-none d-sm-inline" />
                       </Link>
                     </td>
                   </tr>

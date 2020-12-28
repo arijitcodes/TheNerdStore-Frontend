@@ -114,19 +114,21 @@ const ManageProducts = () => {
                         </td>
                         <td className="border border-info align-middle">
                           <Link
-                            className="btn btn-success btn-sm m-1"
+                            className="btn btn-success btn-sm rounded m-1"
                             to={`/admin/product/update/${product._id}`}
                           >
-                            Update
+                            Update{" "}
+                            <i className="far fa-edit d-none d-sm-inline" />
                           </Link>
                           <Link
                             onClick={() => {
                               deleteThisProduct(product._id);
                             }}
-                            className="btn btn-danger btn-sm m-1"
+                            className="btn btn-danger btn-sm rounded m-1"
                             to="#!"
                           >
-                            Delete
+                            Delete{" "}
+                            <i className="far fa-trash-alt d-none d-sm-inline" />
                           </Link>
                         </td>
                       </tr>
