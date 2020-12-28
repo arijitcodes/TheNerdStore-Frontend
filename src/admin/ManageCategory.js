@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 // Components and Methods
@@ -8,8 +8,12 @@ import { deleteCategory, getAllCategories } from "./helper/adminapicall";
 
 const ManageCategory = () => {
   const [categories, setCategories] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [items, setItems] = useState([]);
 
   const { user, token } = isAuthenticated();
+
+  const searchText = useRef("");
 
   useEffect(() => {
     preload();
@@ -23,6 +27,7 @@ const ManageCategory = () => {
           console.log(data.err ? data.err : data.error);
         } else {
           setCategories(data);
+          setItems(data);
         }
       })
       .catch((error) => console.log(error));
@@ -39,14 +44,57 @@ const ManageCategory = () => {
     });
   };
 
+  // Handle Search Field Input Change
+  const handleSearchChange = (e) => {
+    // console.log("Text: ", e.target.value);
+    let tempFiltered = [];
+    if (e.target.value !== "") {
+      // Filter Orders
+
+      // console.log(orders);
+      tempFiltered = categories.filter((category) => {
+        const regexp = new RegExp(`${e.target.value}`, "gi");
+        return (
+          // order._id.match(regexp) ||
+          category.name.match(regexp)
+        );
+      });
+
+      setFiltered(tempFiltered);
+      setItems(tempFiltered);
+      // console.log("Filtered: ", filtered);
+    } else {
+      // Clear Filter
+      setFiltered(tempFiltered);
+      setItems(categories);
+      // console.log("Filtered Cleared: ", filtered);
+    }
+  };
+
   return (
     <Base
       title="Manage Categories"
       description="Manage all of your categories here"
     >
-      <Link className="btn btn-info" to={`/admin/dashboard`}>
-        <span className="">Admin Home</span>
-      </Link>
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <Link className="btn btn-info" to={`/admin/dashboard`}>
+            <span className="">Admin Home</span>
+          </Link>
+        </div>
+        <div className="col-md-6 col-sm-12 mt-2 mt-md-0" align="right">
+          <div className="col-md-8 col-sm-12">
+            <input
+              type="text"
+              placeholder="Search by Category Name..."
+              className="form-control transparent text-light"
+              style={{ background: "rgb(0,0,0,0)" }}
+              ref={searchText}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+      </div>
       <h2 className="mt-2 mb-4">All Categories ({categories.length}) :</h2>
       <div className="row">
         <div className="col-12">
@@ -101,8 +149,8 @@ const ManageCategory = () => {
               </tr>
             </thead>
             <tbody>
-              {categories &&
-                categories.map((category, index) => (
+              {items &&
+                items.map((category, index) => (
                   <tr key={index} className="text-center">
                     <td className="border border-info">{category.name}</td>
                     <td className="border border-info">
