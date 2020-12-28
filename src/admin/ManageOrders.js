@@ -192,7 +192,8 @@ const ManageOrders = () => {
             <input
               type="text"
               placeholder="Search by Order ID/User/Date(YYYY-MM-DD)..."
-              className="form-control"
+              className="form-control transparent text-light"
+              style={{ background: "rgb(0,0,0,0)" }}
               ref={searchText}
               onChange={handleSearchChange}
             />
