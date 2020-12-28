@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // Components and Methods
 import Base from "../core/Base";
@@ -9,11 +9,23 @@ import { statusButton } from "./helper/orderHelper";
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [items, setItems] = useState([]);
 
   const { user, token } = isAuthenticated();
 
+  const searchText = useRef("");
+
   useEffect(() => {
     preload();
+    /* console.log("Reloaded");
+    console.log("Filter after Realod: ", filtered);
+    if (filtered.length > 0) {
+      setItems(filtered);
+    } else {
+      preload();
+      setItems(orders);
+    } */
   }, []);
 
   // Pre-load All Orders in Orders State
@@ -23,6 +35,7 @@ const ManageOrders = () => {
         console.log(data.err ? data.err : data.error);
       } else {
         setOrders(data);
+        setItems(data);
       }
     });
   };
@@ -56,8 +69,8 @@ const ManageOrders = () => {
   // Orders Display Table
   const ordersTable = () => (
     <div className="row justify-content-center">
-      <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-      <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+      <div className="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+      <div className="col-lg-10 col-md-10 col-sm-12 col-xs-12">
         <table className="table table-responsive-sm table-sm table-hover table-dark table-striped">
           <caption>List of All Orders</caption>{" "}
           <thead>
@@ -80,8 +93,8 @@ const ManageOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders &&
-              orders.map((order, index) => (
+            {items &&
+              items.map((order, index) => (
                 <tr key={index} className="text-center">
                   <td className="border border-info align-middle">
                     {order._id}
@@ -103,11 +116,19 @@ const ManageOrders = () => {
                     {statusButton(order.status)}
                   </td>
                   <td className="border border-info align-middle">
-                    <Link
+                    {/* <Link
                       className="btn btn-success btn-sm m-1"
                       to={`/admin/order/update/${order._id}`}
                     >
                       Update
+                    </Link> */}
+                    <Link
+                      className="btn btn-success rounded m-1"
+                      to={`/admin/order/update/${order._id}`}
+                    >
+                      <span>
+                        Update <i className="far fa-edit d-none d-md-inline" />
+                      </span>
                     </Link>
                     {/* <Link
                       onClick={() => {
@@ -124,15 +145,60 @@ const ManageOrders = () => {
           </tbody>
         </table>
       </div>
-      <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+      <div className="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
     </div>
   );
 
+  // Handle Search Field Input Change
+  const handleSearchChange = (e) => {
+    // console.log("Text: ", e.target.value);
+    let tempFiltered = [];
+    if (e.target.value !== "") {
+      // Filter Orders
+
+      // console.log(orders);
+      tempFiltered = orders.filter((order) => {
+        const regexp = new RegExp(`${e.target.value}`, "gi");
+        return (
+          // order._id.match(regexp) ||
+          order.user.name.match(regexp) ||
+          order.user.lastName.match(regexp) ||
+          order._id.match(regexp) ||
+          order.createdAt.match(regexp)
+        );
+      });
+
+      setFiltered(tempFiltered);
+      setItems(tempFiltered);
+      console.log("Filtered: ", filtered);
+    } else {
+      // Clear Filter
+      setFiltered(tempFiltered);
+      setItems(orders);
+      // console.log("Filtered Cleared: ", filtered);
+    }
+  };
+
   return (
     <Base title="Manage Orders" description="Manage all of your Orders here">
-      <Link className="btn btn-info" to={`/admin/dashboard`}>
-        <span className="">Admin Home</span>
-      </Link>
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <Link className="btn btn-info" to={`/admin/dashboard`}>
+            <span className="">Admin Home</span>
+          </Link>
+        </div>
+        <div className="col-md-6 col-sm-12 mt-2 mt-md-0" align="right">
+          <div className="col-md-8 col-sm-12">
+            <input
+              type="text"
+              placeholder="Search by Order ID/User/Date(YYYY-MM-DD)..."
+              className="form-control"
+              ref={searchText}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+      </div>
       <h2 className="mt-2 mb-4">Manage all Orders ({orders.length}) :</h2>
       <div className="row">
         <div className="col-12">{ordersTable()}</div>
