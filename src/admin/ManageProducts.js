@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components and Methods
@@ -8,8 +8,12 @@ import { deleteProduct, getAllProducts } from "./helper/adminapicall";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [items, setItems] = useState([]);
 
   const { user, token } = isAuthenticated();
+
+  const searchText = useRef("");
 
   useEffect(() => {
     preload();
@@ -23,6 +27,7 @@ const ManageProducts = () => {
           console.log(data.err ? data.err : data.error);
         } else {
           setProducts(data);
+          setItems(data);
         }
       })
       .catch((error) => console.log(error));
@@ -39,11 +44,54 @@ const ManageProducts = () => {
     });
   };
 
+  // Handle Search Field Input Change
+  const handleSearchChange = (e) => {
+    // console.log("Text: ", e.target.value);
+    let tempFiltered = [];
+    if (e.target.value !== "") {
+      // Filter Orders
+
+      // console.log(orders);
+      tempFiltered = products.filter((product) => {
+        const regexp = new RegExp(`${e.target.value}`, "gi");
+        return (
+          // order._id.match(regexp) ||
+          product.name.match(regexp)
+        );
+      });
+
+      setFiltered(tempFiltered);
+      setItems(tempFiltered);
+      // console.log("Filtered: ", filtered);
+    } else {
+      // Clear Filter
+      setFiltered(tempFiltered);
+      setItems(products);
+      // console.log("Filtered Cleared: ", filtered);
+    }
+  };
+
   return (
     <Base title="Manage Products" description="Manage your products here">
-      <Link className="btn btn-info" to={`/admin/dashboard`}>
-        <span className="">Admin Home</span>
-      </Link>
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <Link className="btn btn-info" to={`/admin/dashboard`}>
+            <span className="">Admin Home</span>
+          </Link>
+        </div>
+        <div className="col-md-6 col-sm-12 mt-2 mt-md-0" align="right">
+          <div className="col-md-8 col-sm-12">
+            <input
+              type="text"
+              placeholder="Search by Order ID/User/Date(YYYY-MM-DD)..."
+              className="form-control transparent text-light"
+              style={{ background: "rgb(0,0,0,0)" }}
+              ref={searchText}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+      </div>
       <h2 className="mt-2 mb-4">All products ({products.length}) :</h2>
       <div className="row">
         <div className="col-12">
@@ -97,8 +145,8 @@ const ManageProducts = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {products &&
-                    products.map((product, index) => (
+                  {items &&
+                    items.map((product, index) => (
                       <tr key={index} className="text-center">
                         <td className="border border-info align-middle">
                           {product.name}
