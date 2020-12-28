@@ -101,6 +101,7 @@ const Signin = () => {
                 value={email}
                 className="form-control"
                 type="email"
+                placeholder="Your Email Id"
                 required
               />
             </div>
@@ -111,6 +112,7 @@ const Signin = () => {
                 value={password}
                 className="form-control"
                 type="password"
+                placeholder="Your Password"
                 required
               />
             </div>
