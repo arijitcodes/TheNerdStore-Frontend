@@ -33,7 +33,7 @@ const Home = () => {
           <div className="row">
             {products.map((product, index) => {
               return (
-                <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div key={index} className="col-lg-3 col-md-6 col-sm-12 mb-4">
                   <Card product={product} />
                 </div>
               );
