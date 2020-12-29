@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 // Components and Methods
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { getUser } from "./helper/userapicalls";
+import { getUser, updateUserForm } from "./helper/userapicalls";
 
 const Profile = () => {
   const [userData, setUserData] = useState({
@@ -14,6 +14,8 @@ const Profile = () => {
     photo: null,
     purchases: [],
     loading: false,
+    error: false,
+    success: false,
   });
   const [edit, setEdit] = useState(false);
 
@@ -39,7 +41,7 @@ const Profile = () => {
           photo: data.photo ? data.photo : null,
           purchases: data.purchases,
         });
-        console.log(data);
+        // console.log(data);
       }
     });
     setUserData({ ...userData, loading: false });
@@ -52,11 +54,72 @@ const Profile = () => {
     </div>
   );
 
+  // Error Message
+  const errorMessage = () => {
+    if (userData.error) {
+      return (
+        <div className="col-10 offset-1 alert alert-danger" align="center">
+          {userData.error}
+        </div>
+      );
+    }
+  };
+
+  // Success Message
+  const successMessage = () => {
+    if (userData.success) {
+      return (
+        <div className="col-10 offset-1 alert alert-success" align="center">
+          User Updated Successfully!
+        </div>
+      );
+    }
+  };
+
   // Handle Form Value Change
   const handleChange = (e) => {
     setUserData({
       ...userData,
+      error: false,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle Submit
+  const handleSubmit = () => {
+    const userFormData = {
+      name: userData.name,
+      lastName: userData.lastName,
+      email: userData.email,
+      mobile: userData.mobile,
+    };
+
+    updateUserForm(user._id, token, userFormData).then((data) => {
+      if (data.err || data.error) {
+        // console.log(data.err ? data.err : data.error);
+        setUserData({
+          ...userData,
+          error: data.err ? data.err : data.error,
+          success: false,
+        });
+      } else {
+        setUserData({
+          ...userData,
+          error: false,
+          success: true,
+        });
+
+        // Setting Edit as False
+        setEdit(false);
+
+        // Clearing Success Message
+        setTimeout(() => {
+          setUserData({
+            ...userData,
+            success: false,
+          });
+        }, 3000);
+      }
     });
   };
 
@@ -70,8 +133,9 @@ const Profile = () => {
             className="btn btn-block rounded btn-outline-success"
             onClick={(e) => {
               e.preventDefault();
-              setEdit(false);
-              preload();
+              // setEdit(false);
+              // preload();
+              handleSubmit();
             }}
           >
             Update Profile
@@ -170,6 +234,7 @@ const Profile = () => {
               disabled={edit === true ? false : true}
               style={{ background: !edit && "rgb(0,0,0,0)" }}
               onChange={handleChange}
+              required
             />
           </div>
           <div
@@ -186,6 +251,7 @@ const Profile = () => {
               disabled={edit === true ? false : true}
               style={{ background: !edit && "rgb(0,0,0,0)" }}
               onChange={handleChange}
+              required
             />
           </div>
           <div
@@ -202,6 +268,7 @@ const Profile = () => {
               disabled={edit === true ? false : true}
               style={{ background: !edit && "rgb(0,0,0,0)" }}
               onChange={handleChange}
+              required
             />
           </div>
           <div
@@ -287,36 +354,40 @@ const Profile = () => {
       {userData.loading === true ? (
         loadingMessage()
       ) : (
-        <div
-          className="row align-items-center"
-          style={{ border: "1px solid yellow" }}
-        >
-          {/*  */}
-          {/* User DP */}
+        <>
+          {successMessage()}
+          {errorMessage()}
           <div
-            className="col-md-3 col-sm-4 col-xs-12 my-2 h-100"
-            align="center"
-            // style={{ border: "1px solid red" }}
+            className="row align-items-center"
+            style={{ border: "1px solid yellow" }}
           >
-            {userDPSection()}
-          </div>
+            {/*  */}
+            {/* User DP */}
+            <div
+              className="col-md-3 col-sm-4 col-xs-12 my-2 h-100"
+              align="center"
+              // style={{ border: "1px solid red" }}
+            >
+              {userDPSection()}
+            </div>
 
-          {/* User Info Form Body */}
-          <div
-            className="col-md-6 col-sm-8 col-xs-12 my-2"
-            // style={{ border: "1px solid red" }}
-          >
-            {middleUserFormSection()}
-          </div>
+            {/* User Info Form Body */}
+            <div
+              className="col-md-6 col-sm-8 col-xs-12 my-2"
+              // style={{ border: "1px solid red" }}
+            >
+              {middleUserFormSection()}
+            </div>
 
-          {/* Right Side Bar */}
-          <div
-            className="col-md-3 col-sm-12 col-xs-12 my-2"
-            // style={{ border: "1px solid red" }}
-          >
-            {rightSideColumn()}
+            {/* Right Side Bar */}
+            <div
+              className="col-md-3 col-sm-12 col-xs-12 my-2"
+              // style={{ border: "1px solid red" }}
+            >
+              {rightSideColumn()}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </Base>
   );
