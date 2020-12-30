@@ -4,7 +4,12 @@ import { useHistory } from "react-router-dom";
 // Components and Methods
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { getUser, updateUserForm } from "./helper/userapicalls";
+import {
+  getUser,
+  updateUserForm,
+  updateUserPhoto,
+} from "./helper/userapicalls";
+import { API } from "../backend";
 
 const Profile = () => {
   const [userData, setUserData] = useState({
@@ -18,9 +23,18 @@ const Profile = () => {
     error: false,
     success: false,
   });
+  const [photo, setPhoto] = useState({
+    loading: false,
+    changePhoto: false,
+    error: false,
+    photo: null,
+    formData: "",
+  });
   const [edit, setEdit] = useState(false);
 
   const { user, token } = isAuthenticated();
+
+  const { formData } = photo;
 
   const history = useHistory();
 
@@ -41,12 +55,16 @@ const Profile = () => {
           lastName: data.lastName,
           email: data.email,
           mobile: data.mobile ? data.mobile : "",
-          photo: data.photo ? data.photo : null,
+          photo: data.photo === false ? false : true,
           purchases: data.purchases,
           error: false,
           success: false,
         });
-        // console.log(data);
+        console.log(data);
+        setPhoto({
+          ...photo,
+          formData: new FormData(),
+        });
       }
     });
     setUserData({ ...userData, loading: false });
@@ -124,6 +142,63 @@ const Profile = () => {
             success: false,
           });
         }, 3000);
+      }
+    });
+  };
+
+  // Handle Change - PHOTO
+  const onPhotoChange = (e) => {
+    e.preventDefault();
+    /* setPhoto({
+      ...photo,
+      formData: photo.formData.set("photo", e.target.files[0]),
+    }); */
+    if (e.target.name == "photo") {
+      const name = e.target.name;
+      const value = e.target.files[0];
+      formData.set(name, value);
+      setPhoto({
+        ...photo,
+        [name]: value,
+      });
+    }
+    console.log(e.target.name);
+    console.log(formData);
+  };
+
+  // Load User's Photo from Server
+  const loadUserPhoto = () => {
+    return (
+      <img
+        src={`${API}/user/photo/${user._id}`}
+        alt="DP"
+        className="rounded"
+        style={{ maxHeight: "100%", maxWidth: "100%" }}
+      />
+    );
+  };
+
+  // Handle Photo Submit
+  const onPhotoSubmit = (e) => {
+    e.preventDefault();
+    setPhoto({ ...photo, error: false, loading: true });
+
+    updateUserPhoto(user._id, token, photo.formData).then((data) => {
+      if (data.err || data.error) {
+        setUserData({
+          ...userData,
+          error: data.err ? data.err : data.error,
+        });
+        console.log(data.err ? data.err : data.error);
+      } else {
+        setPhoto({
+          ...photo,
+          error: false,
+          loading: false,
+          changePhoto: false,
+        });
+        alert("Photo Updated!");
+        console.log(data);
       }
     });
   };
@@ -207,14 +282,73 @@ const Profile = () => {
       >
         <div className="row my-2">
           <div className="col">
-            <i
-              className="far fa-user-circle"
-              style={{ fontSize: "150px", color: "#c9c9c9" }}
-            ></i>
+            {userData.photo === true ? (
+              <>
+                <img
+                  src={`${API}/user/photo/${user._id}`}
+                  alt="DP"
+                  className="rounded"
+                  style={{ maxHeight: "100%", maxWidth: "100%" }}
+                />
+              </>
+            ) : (
+              <i
+                className="far fa-user-circle"
+                style={{ fontSize: "150px", color: "#c9c9c9" }}
+              ></i>
+            )}
           </div>
         </div>
         <div className="row my-2">
-          <div className="col">Change Photo</div>
+          <div className="col">
+            <span>Change Photo</span>
+            <br />
+            <button
+              className={
+                photo.changePhoto === true ? "d-none" : "btn btn-outline-info"
+              }
+              onClick={() => {
+                setPhoto({ ...photo, changePhoto: true });
+              }}
+            >
+              Change Photo
+            </button>
+            <form className={!photo.changePhoto && "d-none"}>
+              <div className="form-group">
+                <label className="btn btn-block btn-outline-info">
+                  <input
+                    type="file"
+                    name="photo"
+                    accept="image"
+                    placeholder="choose a file"
+                    onChange={onPhotoChange}
+                    required
+                  />
+                </label>
+              </div>
+              <div className="form-group">
+                <button
+                  type="submit"
+                  className="btn btn-block btn-outline-info"
+                  onClick={onPhotoSubmit}
+                >
+                  Update Photo
+                </button>
+                <button
+                  className="btn btn-block btn-outline-danger"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPhoto({
+                      ...photo,
+                      changePhoto: false,
+                    });
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -363,6 +497,13 @@ const Profile = () => {
         loadingMessage()
       ) : (
         <>
+          <button
+            onClick={(e) => {
+              console.log(userData);
+            }}
+          >
+            HAHA
+          </button>
           {successMessage()}
           {errorMessage()}
           <div

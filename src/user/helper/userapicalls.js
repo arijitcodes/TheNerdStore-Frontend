@@ -31,3 +31,19 @@ export const updateUserForm = (userId, token, userFormData) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Update User's Photo
+export const updateUserPhoto = (userId, token, formData) => {
+  return fetch(`${API}/user/photo/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
