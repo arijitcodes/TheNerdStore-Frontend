@@ -170,7 +170,7 @@ const ManageOrders = () => {
 
       setFiltered(tempFiltered);
       setItems(tempFiltered);
-      console.log("Filtered: ", filtered);
+      // console.log("Filtered: ", filtered);
     } else {
       // Clear Filter
       setFiltered(tempFiltered);

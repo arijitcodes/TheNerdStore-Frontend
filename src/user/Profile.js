@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // Components and Methods
 import Base from "../core/Base";
@@ -21,6 +22,8 @@ const Profile = () => {
 
   const { user, token } = isAuthenticated();
 
+  const history = useHistory();
+
   useEffect(() => {
     preload();
   }, []);
@@ -40,6 +43,8 @@ const Profile = () => {
           mobile: data.mobile ? data.mobile : "",
           photo: data.photo ? data.photo : null,
           purchases: data.purchases,
+          error: false,
+          success: false,
         });
         // console.log(data);
       }
@@ -311,6 +316,9 @@ const Profile = () => {
           <div
             className="card border-info"
             style={{ background: "rgb(0,0,0,0)", cursor: "pointer" }}
+            onClick={() => {
+              history.push("/orders");
+            }}
           >
             {/* <div className="card-header">Header</div> */}
             <div className="card-body text-info">

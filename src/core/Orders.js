@@ -22,7 +22,7 @@ const Orders = () => {
         console.log(data.err ? data.err : data.error);
       } else {
         setOrders(data);
-        console.log(data);
+        // console.log(data);
       }
     });
   };
