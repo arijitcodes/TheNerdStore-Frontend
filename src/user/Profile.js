@@ -24,10 +24,11 @@ const Profile = () => {
     success: false,
   });
   const [photo, setPhoto] = useState({
-    loading: false,
+    loading: true,
     changePhoto: false,
     error: false,
     photo: null,
+    photoURI: null,
     formData: "",
   });
   const [edit, setEdit] = useState(false);
@@ -60,9 +61,10 @@ const Profile = () => {
           error: false,
           success: false,
         });
-        console.log(data);
+        // console.log(data);
         setPhoto({
           ...photo,
+          changePhoto: false,
           formData: new FormData(),
         });
       }
@@ -162,8 +164,8 @@ const Profile = () => {
         [name]: value,
       });
     }
-    console.log(e.target.name);
-    console.log(formData);
+    // console.log(e.target.name);
+    // console.log(formData);
   };
 
   // Load User's Photo from Server
@@ -189,7 +191,11 @@ const Profile = () => {
           ...userData,
           error: data.err ? data.err : data.error,
         });
-        console.log(data.err ? data.err : data.error);
+        setPhoto({
+          ...photo,
+          loading: false,
+        });
+        // console.log(data.err ? data.err : data.error);
       } else {
         setPhoto({
           ...photo,
@@ -197,8 +203,9 @@ const Profile = () => {
           loading: false,
           changePhoto: false,
         });
-        alert("Photo Updated!");
-        console.log(data);
+        // alert("Photo Updated!");
+        // console.log(data);
+        preload();
       }
     });
   };
@@ -284,11 +291,18 @@ const Profile = () => {
           <div className="col">
             {userData.photo === true ? (
               <>
+                {photo.loading && "Loading..."}
                 <img
                   src={`${API}/user/photo/${user._id}`}
                   alt="DP"
-                  className="rounded"
+                  className={photo.loading === true ? "d-none" : "rounded"}
                   style={{ maxHeight: "100%", maxWidth: "100%" }}
+                  onLoad={() => {
+                    setPhoto({
+                      ...photo,
+                      loading: false,
+                    });
+                  }}
                 />
               </>
             ) : (
@@ -301,11 +315,13 @@ const Profile = () => {
         </div>
         <div className="row my-2">
           <div className="col">
-            <span>Change Photo</span>
-            <br />
+            {/* <span>Change Photo</span>
+            <br /> */}
             <button
               className={
-                photo.changePhoto === true ? "d-none" : "btn btn-outline-info"
+                photo.changePhoto === true
+                  ? "d-none"
+                  : "btn btn-outline-info mt-2"
               }
               onClick={() => {
                 setPhoto({ ...photo, changePhoto: true });
@@ -313,7 +329,7 @@ const Profile = () => {
             >
               Change Photo
             </button>
-            <form className={!photo.changePhoto && "d-none"}>
+            <form className={photo.changePhoto === false ? "d-none" : "mt-2"}>
               <div className="form-group">
                 <label className="btn btn-block btn-outline-info">
                   <input
@@ -322,6 +338,7 @@ const Profile = () => {
                     accept="image"
                     placeholder="choose a file"
                     onChange={onPhotoChange}
+                    style={{ maxWidth: "100%", overflow: "hidden" }}
                     required
                   />
                 </label>
@@ -342,6 +359,10 @@ const Profile = () => {
                       ...photo,
                       changePhoto: false,
                     });
+                    setUserData({
+                      ...userData,
+                      error: false,
+                    });
                   }}
                 >
                   Cancel
@@ -360,7 +381,7 @@ const Profile = () => {
       <div className="col m-4">
         <form>
           <div
-            className="form-group col-10 offset-1"
+            className="form-group col"
             // style={{ border: "solid 1px yellow" }}
           >
             <label htmlFor="name">First Name: </label>
@@ -377,7 +398,7 @@ const Profile = () => {
             />
           </div>
           <div
-            className="form-group col-10 offset-1"
+            className="form-group col"
             // style={{ border: "solid 1px yellow" }}
           >
             <label htmlFor="lastName">Last Name: </label>
@@ -394,7 +415,7 @@ const Profile = () => {
             />
           </div>
           <div
-            className="form-group col-10 offset-1"
+            className="form-group col"
             // style={{ border: "solid 1px yellow" }}
           >
             <label htmlFor="fName">Your Email: </label>
@@ -411,7 +432,7 @@ const Profile = () => {
             />
           </div>
           <div
-            className="form-group col-10 offset-1"
+            className="form-group col"
             // style={{ border: "solid 1px yellow" }}
           >
             <label htmlFor="fName">Mobile: </label>
@@ -427,7 +448,7 @@ const Profile = () => {
             />
           </div>
           <div
-            className="form-group col-10 offset-1"
+            className="form-group col"
             // style={{ border: "solid 1px yellow" }}
           >
             {displayButtons()}
@@ -497,13 +518,6 @@ const Profile = () => {
         loadingMessage()
       ) : (
         <>
-          <button
-            onClick={(e) => {
-              console.log(userData);
-            }}
-          >
-            HAHA
-          </button>
           {successMessage()}
           {errorMessage()}
           <div
