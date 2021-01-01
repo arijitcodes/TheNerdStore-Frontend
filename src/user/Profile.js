@@ -501,11 +501,10 @@ const Profile = () => {
       >
         <div className="col" align="center">
           <div className="row">
-            <div className="col">Your Addresses</div>
+            <div className="col my-3">Your Primary Address</div>
           </div>
           <div className="row">
-            <div className="col-12">Address1</div>
-            <div className="col-12">Address2</div>
+            <div className="col">Primary Address Here</div>
           </div>
         </div>
       </div>
