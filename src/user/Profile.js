@@ -183,6 +183,23 @@ const Profile = () => {
   // Handle Photo Submit
   const onPhotoSubmit = (e) => {
     e.preventDefault();
+
+    // If Photo is Blank, don't submit and return.
+    if (photo.photo == null || photo.photo == "") {
+      setUserData({
+        ...userData,
+        error: "No photo is selected! Choose a Photo to update!",
+      });
+
+      setTimeout(() => {
+        setUserData({
+          ...userData,
+          error: null,
+        });
+      }, 2000);
+      return;
+    }
+
     setPhoto({ ...photo, error: false, loading: true });
 
     updateUserPhoto(user._id, token, photo.formData).then((data) => {
