@@ -103,6 +103,58 @@ const UpdateOrder = ({ match }) => {
     </>
   );
 
+  // Delivery Address Details
+  const deliveryAddress = () => (
+    <>
+      <div className="row">
+        <div className="col">
+          <ul className="list-group custom-transparent-list-info">
+            <li className="list-group-item text-light h4 bordered border-warning">
+              Delivery Address Details{" "}
+              {!order.deliveryAddress && (
+                <span className="text-danger">NOT AVAILABLE</span>
+              )}
+            </li>
+          </ul>
+        </div>
+      </div>
+      {order.deliveryAddress && (
+        <ul className="list-group custom-transparent-list-info">
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">Address:</span>{" "}
+            {order.deliveryAddress.address}
+          </li>
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">City: </span>{" "}
+            {order.deliveryAddress.city}
+          </li>
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">District:</span>{" "}
+            {order.deliveryAddress.district}
+          </li>
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">State:</span>{" "}
+            {order.deliveryAddress.state}
+          </li>
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">Country: </span>{" "}
+            {order.deliveryAddress.country}
+          </li>
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">Landmark: </span>{" "}
+            {order.deliveryAddress.landmark
+              ? order.deliveryAddress.landmark
+              : "Not Available"}
+          </li>
+          <li className="list-group-item text-light">
+            <span className="text-muted mr-2">Zipcode: </span>{" "}
+            {order.deliveryAddress.zipcode}
+          </li>
+        </ul>
+      )}
+    </>
+  );
+
   // Products Ordered
   const productsOrdered = () => (
     <div className="row">
@@ -250,6 +302,9 @@ const UpdateOrder = ({ match }) => {
               <div className="row justify-content-center my-4">
                 <div className="col">{orderDetails()}</div>
                 <div className="col mt-4 mt-sm-0">{userDetails()}</div>
+              </div>
+              <div className="row justify-content-center my-4">
+                <div className="col">{deliveryAddress()}</div>
               </div>
               <div className="row justify-content-center my-4">
                 <div className="col">{productsOrdered()}</div>

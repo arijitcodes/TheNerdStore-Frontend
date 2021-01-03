@@ -143,6 +143,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
             products: products,
             transaction_id: response.transaction.id,
             amount: response.transaction.amount,
+            deliveryAddress: address._id,
           };
 
           createOrder(userId, token, orderData);
