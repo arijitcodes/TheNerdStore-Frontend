@@ -62,3 +62,35 @@ export const getUsersPrimaryAddress = (userId, token) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Get All Address of a Logged In User
+export const getAllAddress = (userId, token) => {
+  return fetch(`${API}/address/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
+// Create an Address
+export const createAddress = (userId, token, data) => {
+  return fetch(`${API}/address/${userId}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
