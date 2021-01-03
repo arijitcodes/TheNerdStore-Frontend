@@ -18,7 +18,7 @@ const Address = () => {
   // Preload Address of User
   const preload = () => {
     getUsersPrimaryAddress(user._id, token).then((data) => {
-      console.log("Data: ", data);
+      //   console.log("Data: ", data);
       if (data.err || data.error) {
         if (data.err) {
           setAddress(false);

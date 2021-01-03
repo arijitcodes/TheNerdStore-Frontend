@@ -16,7 +16,7 @@ const AddNewAddress = () => {
     country: "",
     landmark: "",
     zipcode: "",
-    user: null,
+    user: isAuthenticated().user._id ? isAuthenticated().user._id : null,
   });
   const [addressTypes, setAddressTypes] = useState([]);
   const [error, setError] = useState(false);
@@ -63,13 +63,13 @@ const AddNewAddress = () => {
       setError("Please fill up all the required fields!");
       removeError(2000);
       return;
+    } else {
+      // setting user
+      setAddress({
+        ...address,
+        user: user._id,
+      });
     }
-
-    // setting user
-    setAddress({
-      ...address,
-      user: user._id,
-    });
 
     console.log(address);
 

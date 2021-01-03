@@ -10,6 +10,8 @@ import { emptyCart, loadCart, checkCart } from "./helper/cartHelper";
 import { getMeToken, processPayment } from "./helper/paymentHelper";
 import { createOrder } from "./helper/orderHelper";
 import { isAuthenticated } from "../auth/helper";
+import { getUsersPrimaryAddress } from "../user/helper/userapicalls";
+import Address from "../user/Address";
 
 const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
   const [info, setInfo] = useState({
@@ -19,6 +21,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
     error: "",
     instance: {},
   });
+  const [address, setAddress] = useState(null);
 
   const userId = isAuthenticated() && isAuthenticated().user._id;
   const token = isAuthenticated() && isAuthenticated().token;
@@ -29,6 +32,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
 
   useEffect(() => {
     getToken(userId, token);
+    preload();
   }, []);
 
   // Getting Token Method
@@ -48,24 +52,63 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
     });
   };
 
+  // Preload User's Primary Address
+  const preload = () => {
+    if (token) {
+      getUsersPrimaryAddress(userId, token).then((data) => {
+        if (data.err || data.error) {
+          if (data.err) {
+            setAddress(false);
+          }
+          // setError(data.err ? data.err : data.error);
+          console.log(data.err ? data.err : data.error);
+        } else {
+          setAddress(data);
+        }
+      });
+    }
+  };
+
   // Show BrainTree Drop In UI
   const showBTDropIn = () => {
     return (
       <div>
         {products && products.length > 0 ? (
           info.clientToken !== null && token !== false ? (
-            <div>
-              <DropIn
-                options={{ authorization: info.clientToken }}
-                onInstance={(instance) => (info.instance = instance)}
-              />
-              <button
-                className="btn btn-success btn-block"
-                onClick={onPurchase}
-              >
-                Buy
-              </button>
-            </div>
+            address === null || address === false ? (
+              <>
+                <div className="alert alert-danger">
+                  You don't have any Addresses / Primary Address Saved! Please
+                  add an Address first to complete payment!
+                </div>
+                <Link
+                  to="/newaddress"
+                  className="btn btn-block btn-outline-info"
+                >
+                  Add a New Address
+                </Link>
+              </>
+            ) : (
+              <>
+                <div>
+                  <DropIn
+                    options={{ authorization: info.clientToken }}
+                    onInstance={(instance) => (info.instance = instance)}
+                  />
+                  <button
+                    className="btn btn-success btn-block"
+                    onClick={onPurchase}
+                  >
+                    Buy
+                  </button>
+                </div>
+                <div className="row">
+                  <div className="col" align="center">
+                    <Address />
+                  </div>
+                </div>
+              </>
+            )
           ) : (
             // <h3 className="text-danger">Please Log In to Complete Payment!</h3>
             <div className="alert alert-danger">
@@ -101,6 +144,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
             transaction_id: response.transaction.id,
             amount: response.transaction.amount,
           };
+
           createOrder(userId, token, orderData);
 
           // Empty Cart after Payment Success

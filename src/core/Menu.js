@@ -67,7 +67,7 @@ const Menu = ({ history }) => {
               >
                 <i className="fas fa-shopping-cart pr-1"></i> Cart{" "}
                 {productsInCart > 0 ? (
-                  <span class="badge badge-pill badge-warning">
+                  <span className="badge badge-pill badge-warning">
                     {productsInCart}
                   </span>
                 ) : (
