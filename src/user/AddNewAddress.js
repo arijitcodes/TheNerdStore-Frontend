@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Components and Methods
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { createAddress } from "./helper/userapicalls";
+import { getAddressTypes, createAddress } from "./helper/userapicalls";
 
 const AddNewAddress = () => {
   const [address, setAddress] = useState({
@@ -18,10 +18,26 @@ const AddNewAddress = () => {
     zipcode: "",
     user: null,
   });
+  const [addressTypes, setAddressTypes] = useState([]);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const { user, token } = isAuthenticated();
+
+  useEffect(() => {
+    preload();
+  }, []);
+
+  // Preload Address Types
+  const preload = () => {
+    getAddressTypes().then((data) => {
+      if (data.err || data.error) {
+        console.log(data.err ? data.err : data.error);
+      } else {
+        setAddressTypes(data);
+      }
+    });
+  };
 
   // On Change
   const onChange = (e) => {
@@ -103,14 +119,28 @@ const AddNewAddress = () => {
           </div>
           <div className="col">
             <label>Address Type *</label>
-            <input
+            <select
+              name="type"
+              className="form-control"
+              value={address.type}
+              onChange={onChange}
+            >
+              <option value="">Choose One...</option>
+              {addressTypes &&
+                addressTypes.map((addressType, index) => (
+                  <option key={index} value={addressType}>
+                    {addressType}
+                  </option>
+                ))}
+            </select>
+            {/* <input
               type="text"
               name="type"
               className="form-control"
               placeholder="Address Type"
               value={address.type}
               onChange={onChange}
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -214,6 +244,7 @@ const AddNewAddress = () => {
           Submit
         </button>
       </div>
+      {JSON.stringify(address)}
     </form>
   );
 

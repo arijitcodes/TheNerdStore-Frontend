@@ -48,6 +48,20 @@ export const updateUserPhoto = (userId, token, formData) => {
     .catch((error) => console.log(error));
 };
 
+//
+// Address Calls
+
+// Get all available Address Types
+export const getAddressTypes = () => {
+  return fetch(`${API}/address/types`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
 // Get User's Primary Address
 export const getUsersPrimaryAddress = (userId, token) => {
   return fetch(`${API}/address/primary/${userId}`, {
