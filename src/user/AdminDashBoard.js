@@ -5,6 +5,7 @@ import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import { Link } from "react-router-dom";
 import DashboardItems from "./DashboardItems";
+import DashboardClock from "./DashboardClock";
 
 const AdminDashBoard = () => {
   const {
@@ -59,7 +60,7 @@ const AdminDashBoard = () => {
   const adminRightSide = () => {
     return (
       <>
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col">
             <DashboardItems />
           </div>
@@ -87,6 +88,19 @@ const AdminDashBoard = () => {
                   <span className="badge badge-danger mr-2">Admin Area</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="row d-none d-lg-block">
+          <div className="col">
+            <div
+              className="card border-info mb-4 text-muted"
+              style={{ background: "rgba(0,0,0,0)" }}
+            >
+              <span className="py-1 px-2 text-right text-muted">
+                <DashboardClock />
+              </span>
             </div>
           </div>
         </div>

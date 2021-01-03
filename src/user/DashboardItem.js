@@ -29,10 +29,10 @@ const DashboardItem = ({ title, body, icon, link = "#" }) => {
           }
         >
           <div className="row align-items-center">
-            <div className="col text-center h1">
+            <div className="col-sm-6 col-md-12 col-lg-5 text-center h1">
               <i className={icon}></i>
             </div>
-            <div className="col">
+            <div className="col-sm-6 col-md-12 col-lg-7  text-center">
               <h5 className="card-title">{title}</h5>
               <p className={admin === true ? "d-none" : "card-text"}>{body}</p>
             </div>
