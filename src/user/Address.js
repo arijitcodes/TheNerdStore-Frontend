@@ -47,58 +47,58 @@ const Address = () => {
       <div className="row align-items-center">
         <div className="col">
           <div className="row align-items-center">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               Title:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.title}
             </div>
           </div>
           <div className="row align-items-center">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               Type:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.type}
             </div>
           </div>
           <div className="row align-items-center my-1">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               Address:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.address}
             </div>
           </div>
           <div className="row align-items-center my-1">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               City:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.city}
             </div>
           </div>
           <div className="row align-items-center my-1">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               District:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.district}
             </div>
           </div>
           <div className="row align-items-center my-1">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               State:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.state}
             </div>
           </div>
           <div className="row align-items-center my-1">
-            <div className="col" align="right">
+            <div className="col-lg-4 col-md-5 col-sm-4 col" align="right">
               ZIP Code:
             </div>
-            <div className="col" align="left">
+            <div className="col-lg-8 col-md-7 col-sm-8 col" align="left">
               {address.zipcode}
             </div>
           </div>

@@ -92,7 +92,7 @@ const Signin = () => {
   const signInForm = () => {
     return (
       <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-md-6 col-sm-8 offset-md-3 offset-sm-2 text-left">
           <form onSubmit={onSubmit}>
             <div className="form-group">
               <label className="text-light">Email</label>
@@ -131,7 +131,7 @@ const Signin = () => {
       {errorMessage()}
       {signInForm()}
       {performRedirect()}
-      <p className="text-white text-center">{JSON.stringify(values)}</p>
+      {/* <p className="text-white text-center">{JSON.stringify(values)}</p> */}
     </Base>
   );
 };

@@ -23,7 +23,7 @@ const Cart = () => {
         <div className="row text-center">
           {products && products.length > 0 ? (
             products.map((product, index) => (
-              <div className="col-md-6 col-sm-12 mt-2" key={index}>
+              <div className="col-lg-4 col-md-6 col-sm-12 mt-2" key={index}>
                 <Card
                   product={product}
                   addToCart={false}
@@ -42,21 +42,11 @@ const Cart = () => {
     );
   };
 
-  // Load Checkout
-  const loadCheckout = () => {
-    return (
-      <div>
-        <h2>For Checkout</h2>
-      </div>
-    );
-  };
-
   return (
     <Base title="Cart" description="Check you Shopping Cart">
       <div className="row">
-        <div className="col-6">{loadAllProducts()}</div>
-        <div className="col-6">
-          {/* {loadCheckout()} */}
+        <div className="col-lg-8 col-md-6 col-sm-6">{loadAllProducts()}</div>
+        <div className="col-lg-4 col-md-6 col-sm-6">
           <Payment products={products} setReload={setReload} />
         </div>
       </div>

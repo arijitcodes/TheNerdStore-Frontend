@@ -99,11 +99,11 @@ const Signup = () => {
   const signUpForm = () => {
     return (
       <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+        <div className="col-lg-8 col-md-10 offset-lg-2 offset-md-1 text-left">
           <form onSubmit={onSubmit}>
             <div className="form-group">
               <div className="row">
-                <div className="col">
+                <div className="col-sm-6">
                   <label className="text-light">First Name</label>
                   <input
                     className="form-control"
@@ -114,7 +114,7 @@ const Signup = () => {
                     required
                   />
                 </div>
-                <div className="col">
+                <div className="col-sm-6">
                   <label className="text-light">Last Name</label>
                   <input
                     className="form-control"
@@ -140,7 +140,7 @@ const Signup = () => {
             </div>
             <div className="form-group">
               <div className="row">
-                <div className="col">
+                <div className="col-sm-6">
                   <label className="text-light">Password</label>
                   <input
                     className="form-control"
@@ -151,7 +151,7 @@ const Signup = () => {
                     required
                   />
                 </div>
-                <div className="col">
+                <div className="col-sm-6">
                   <label className="text-light">Enter Password Again</label>
                   <input
                     className="form-control"
@@ -178,7 +178,7 @@ const Signup = () => {
       {successMessage()}
       {errorMessage()}
       {signUpForm()}
-      <p className="text-white text-center">{JSON.stringify(values)}</p>
+      {/* <p className="text-white text-center">{JSON.stringify(values)}</p> */}
     </Base>
   );
 };
