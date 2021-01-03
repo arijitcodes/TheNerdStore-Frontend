@@ -10,6 +10,7 @@ import {
   updateUserPhoto,
 } from "./helper/userapicalls";
 import { API } from "../backend";
+import Address from "./Address";
 
 const Profile = () => {
   const [userData, setUserData] = useState({
@@ -517,12 +518,7 @@ const Profile = () => {
         // style={{ border: "solid 1px green" }}
       >
         <div className="col" align="center">
-          <div className="row">
-            <div className="col my-3">Your Primary Address</div>
-          </div>
-          <div className="row">
-            <div className="col">Primary Address Here</div>
-          </div>
+          <Address />
         </div>
       </div>
     </>

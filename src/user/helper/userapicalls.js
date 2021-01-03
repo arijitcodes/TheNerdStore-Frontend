@@ -47,3 +47,18 @@ export const updateUserPhoto = (userId, token, formData) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Get User's Primary Address
+export const getUsersPrimaryAddress = (userId, token) => {
+  return fetch(`${API}/address/primary/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
