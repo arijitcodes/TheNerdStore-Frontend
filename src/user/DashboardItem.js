@@ -18,14 +18,14 @@ const DashboardItem = ({ title, body, icon, link = "#" }) => {
     >
       <div
         className={
-          admin === true ? "card border-white mb-3" : "card border-info mb-3"
+          admin === true ? "card border-info mb-3" : "card border-info mb-3"
         }
         style={{ background: "rgb(0,0,0,0)", cursor: "pointer" }}
       >
         {/* <div className="card-header">Header</div> */}
         <div
           className={
-            admin === true ? "card-body text-white" : "card-body text-info"
+            admin === true ? "card-body text-secondary" : "card-body text-info"
           }
         >
           <div className="row align-items-center">

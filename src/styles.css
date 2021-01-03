@@ -13,6 +13,15 @@ body {
   border-color: #5bc0de;
 }
 
+.custom-transparent-admin-dashboard-list > li {
+  background: rgb(0, 0, 0, 0);
+  /* border-color: #5bc0de; */
+}
+
+.bg-custom {
+  background: #2d3136;
+}
+
 /* footer {
   position: absolute;
   left: 0px;
