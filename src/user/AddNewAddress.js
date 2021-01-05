@@ -244,7 +244,7 @@ const AddNewAddress = () => {
           Submit
         </button>
       </div>
-      {JSON.stringify(address)}
+      {/* {JSON.stringify(address)} */}
     </form>
   );
 

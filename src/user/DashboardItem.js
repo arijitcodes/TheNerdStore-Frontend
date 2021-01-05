@@ -11,7 +11,11 @@ const DashboardItem = ({ title, body, icon, link = "#" }) => {
 
   return (
     <div
-      className="col-lg-4 col-md-6 col-sm-6"
+      className={
+        admin === true
+          ? "col-lg-4 col-md-6 col-sm-6 h-100"
+          : "col-lg-3 col-md-6 col-sm-6 h-100"
+      }
       onClick={() => {
         history.push(link);
       }}
@@ -29,11 +33,11 @@ const DashboardItem = ({ title, body, icon, link = "#" }) => {
           }
         >
           <div className="row align-items-center">
-            <div className="col-sm-6 col-md-12 col-lg-5 text-center h1">
+            <div className="col col-sm-5 col-md-12 col-lg-3 text-center h1">
               <i className={icon}></i>
             </div>
-            <div className="col-sm-6 col-md-12 col-lg-7  text-center">
-              <h5 className="card-title">{title}</h5>
+            <div className="col col-sm-7 col-md-12 col-lg-9 text-center">
+              <h5 className="card-title lead">{title}</h5>
               <p className={admin === true ? "d-none" : "card-text"}>{body}</p>
             </div>
           </div>
