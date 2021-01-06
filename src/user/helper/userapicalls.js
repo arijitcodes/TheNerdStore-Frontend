@@ -137,3 +137,35 @@ export const setPrimaryAddress = (userId, token, addressId) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Get An Address from Id
+export const getAnAddress = (userId, token, addressId) => {
+  return fetch(`${API}/address/${addressId}/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
+
+// Update Address
+export const updateAddress = (userId, token, addressId, data) => {
+  return fetch(`${API}/address/${addressId}/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
