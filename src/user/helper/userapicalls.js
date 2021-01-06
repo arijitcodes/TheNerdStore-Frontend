@@ -108,3 +108,17 @@ export const createAddress = (userId, token, data) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Delete An Address
+export const deleteAddress = (userId, token, addressId) => {
+  return fetch(`${API}/address/${addressId}/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

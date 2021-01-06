@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 // Components and Methods
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { getAllAddress } from "./helper/userapicalls";
+import { deleteAddress, getAllAddress } from "./helper/userapicalls";
 
 const ManageAddresses = () => {
   const [addresses, setAddresses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const { user, token } = isAuthenticated();
 
@@ -177,6 +178,10 @@ const ManageAddresses = () => {
                                 ? "d-none"
                                 : "btn btn-outline-info btn-block mb-4"
                             }
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setAsPrimaryAddress(address._id);
+                            }}
                           >
                             Set As Primary
                           </button>
@@ -184,7 +189,13 @@ const ManageAddresses = () => {
                           <button className="btn btn-outline-success btn-block mt-2">
                             Edit
                           </button>
-                          <button className="btn btn-outline-danger btn-block mt-2">
+                          <button
+                            className="btn btn-outline-danger btn-block mt-2"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              deleteThisAddress(address._id);
+                            }}
+                          >
                             Delete
                           </button>
                         </div>
@@ -199,16 +210,43 @@ const ManageAddresses = () => {
     </>
   );
 
+  // Delete This Address
+  const deleteThisAddress = (addressId) => {
+    deleteAddress(user._id, token, addressId).then((data) => {
+      if (data.err || data.error) {
+        setError(data.err ? data.err : data.error);
+      } else {
+        setSuccess("Address has been deleted successfully!");
+        setTimeout(() => {
+          setSuccess(false);
+        }, 2000);
+        preload();
+      }
+    });
+  };
+
+  // Set as A primary
+  const setAsPrimaryAddress = (addressId) => {
+    alert(addressId);
+  };
+
+  // Success Message
+  const successMessage = () =>
+    success && <div className="alert alert-success">{success}</div>;
+
+  // Error Message
+  const errorMessage = () => {
+    error && <div className="alert alert-danger">{error}</div>;
+  };
+
   return (
     <Base
       title="Manage Addresses"
       description="Manage all of your saved addresses"
     >
-      {error && (
-        <div className="alert alert-danger" align="center">
-          {error}
-        </div>
-      )}
+      {successMessage()}
+      {errorMessage()}
+
       {loading && (
         <div className="alert alert-info" align="center">
           Loading...
