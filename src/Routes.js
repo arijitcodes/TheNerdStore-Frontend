@@ -25,6 +25,7 @@ import Orders from "./core/Orders";
 import Profile from "./user/Profile";
 import AddNewAddress from "./user/AddNewAddress";
 import ManageAddresses from "./user/ManageAddresses";
+import UpdateAddress from "./user/UpdateAddress";
 
 const Routes = () => {
   return (
@@ -42,8 +43,17 @@ const Routes = () => {
           />
           <PrivateRoutes path="/orders" exact component={Orders} />
           <PrivateRoutes path="/profile" exact component={Profile} />
-          <PrivateRoutes path="/newaddress" exact component={AddNewAddress} />
+          <PrivateRoutes
+            path="/addresses/new"
+            exact
+            component={AddNewAddress}
+          />
           <PrivateRoutes path="/addresses" exact component={ManageAddresses} />
+          <PrivateRoutes
+            path="/addresses/update/:addressId"
+            exact
+            component={UpdateAddress}
+          />
           <AdminRoutes
             path="/admin/dashboard"
             exact

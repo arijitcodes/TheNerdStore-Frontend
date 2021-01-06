@@ -35,7 +35,7 @@ const Address = () => {
   const addPrimaryAddress = () => (
     <>
       {error && error}
-      <Link to="/newaddress" className="btn btn-block btn-outline-info my-2">
+      <Link to="/addresses/new" className="btn btn-block btn-outline-info my-2">
         Add A Primary Address
       </Link>
     </>

@@ -82,7 +82,7 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
                   add an Address first to complete payment!
                 </div>
                 <Link
-                  to="/newaddress"
+                  to="/addresses/new"
                   className="btn btn-block btn-outline-info"
                 >
                   Add a New Address

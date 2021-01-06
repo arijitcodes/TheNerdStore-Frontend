@@ -122,3 +122,18 @@ export const deleteAddress = (userId, token, addressId) => {
     })
     .catch((error) => console.log(error));
 };
+
+// Set an Address as primary
+export const setPrimaryAddress = (userId, token, addressId) => {
+  return fetch(`${API}/address/primary/${addressId}/${userId}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};

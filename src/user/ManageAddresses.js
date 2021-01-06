@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 // Components and Methods
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
-import { deleteAddress, getAllAddress } from "./helper/userapicalls";
+import {
+  deleteAddress,
+  getAllAddress,
+  setPrimaryAddress,
+} from "./helper/userapicalls";
 
 const ManageAddresses = () => {
   const [addresses, setAddresses] = useState([]);
@@ -41,7 +45,7 @@ const ManageAddresses = () => {
           <h3>Manage Addresses ({addresses && addresses.length}):</h3>
         </div>
         <div className="col-md-6 col-sm-5" align="right">
-          <Link to="/newaddress" className="btn btn-outline-info">
+          <Link to="/addresses/new" className="btn btn-outline-info">
             Add a new Address
           </Link>
         </div>
@@ -186,9 +190,16 @@ const ManageAddresses = () => {
                             Set As Primary
                           </button>
 
-                          <button className="btn btn-outline-success btn-block mt-2">
+                          <Link
+                            to={`/addresses/update/${address._id}`}
+                            className="btn btn-outline-success btn-block mt-2"
+                            /* onClick={(e) => {
+                              e.preventDefault();
+                              handleEdit(address._id);
+                            }} */
+                          >
                             Edit
-                          </button>
+                          </Link>
                           <button
                             className="btn btn-outline-danger btn-block mt-2"
                             onClick={(e) => {
@@ -227,16 +238,35 @@ const ManageAddresses = () => {
 
   // Set as A primary
   const setAsPrimaryAddress = (addressId) => {
-    alert(addressId);
+    // alert(addressId);
+    setPrimaryAddress(user._id, token, addressId).then((data) => {
+      if (data.err || data.error) {
+        setError(data.err ? data.err : data.error);
+      } else {
+        setSuccess("New Primary Address is Set Successfully!");
+        setTimeout(() => {
+          setSuccess(false);
+        }, 2000);
+        preload();
+      }
+    });
   };
 
   // Success Message
   const successMessage = () =>
-    success && <div className="alert alert-success">{success}</div>;
+    success && (
+      <div className="alert alert-success" align="center">
+        {success}
+      </div>
+    );
 
   // Error Message
   const errorMessage = () => {
-    error && <div className="alert alert-danger">{error}</div>;
+    error && (
+      <div className="alert alert-danger" align="center">
+        {error}
+      </div>
+    );
   };
 
   return (
@@ -258,7 +288,10 @@ const ManageAddresses = () => {
             <div className="alert alert-info" align="center">
               No Addresses Found!
             </div>
-            <Link to="/newaddress" className="btn btn-block btn-outline-info">
+            <Link
+              to="/addresses/new"
+              className="btn btn-block btn-outline-info"
+            >
               Add A New Address
             </Link>
           </div>
