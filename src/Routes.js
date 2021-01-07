@@ -26,6 +26,7 @@ import Profile from "./user/Profile";
 import AddNewAddress from "./user/AddNewAddress";
 import ManageAddresses from "./user/ManageAddresses";
 import UpdateAddress from "./user/UpdateAddress";
+import Error from "./Error";
 
 const Routes = () => {
   return (
@@ -95,6 +96,7 @@ const Routes = () => {
             exact
             component={UpdateOrder}
           />
+          <Route path="*" component={Error} />
         </Switch>
       </Router>
     </CartState>
