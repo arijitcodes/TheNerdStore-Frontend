@@ -58,18 +58,18 @@ const ManageAddresses = () => {
               addresses.map((address, index) => (
                 <div className="col-lg-6 col-md-12 col-sm-12" key={index}>
                   <div
-                    class="card border-info my-3"
+                    className="card border-info my-3"
                     style={{ background: "rgb(0,0,0,0)" }}
                   >
-                    <div class="card-header">
+                    <div className="card-header">
                       Address Type:{" "}
                       <span className="text-info mx-2">{address.type}</span>
                       {address.primary && " | Primary Address |"}
                     </div>
-                    <div class="card-body">
+                    <div className="card-body">
                       <div className="row align-items-center">
                         <div className="col-12 text-center">
-                          <h6 class="card-title lead">
+                          <h6 className="card-title lead">
                             <span className="text-muted">Address Title:</span>{" "}
                             {address.title}
                           </h6>
@@ -82,7 +82,7 @@ const ManageAddresses = () => {
                           {/* <div className="col">
                         <div className="row"> */}
                           {/* <div className="col"> */}
-                          <div class="card-text" align="left">
+                          <div className="card-text" align="left">
                             {/* <div className="row">
                             <div
                               className="col-sm-4 col text-muted"
@@ -297,7 +297,10 @@ const ManageAddresses = () => {
           </div>
         </div>
       )}
-      {loading === false && addresses && displayAddresses()}
+      {loading === false &&
+        addresses &&
+        addresses.length > 0 &&
+        displayAddresses()}
     </Base>
   );
 };

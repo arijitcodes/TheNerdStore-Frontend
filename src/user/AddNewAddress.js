@@ -71,8 +71,6 @@ const AddNewAddress = () => {
       });
     }
 
-    console.log(address);
-
     // Creating Address
     createAddress(user._id, token, address).then((data) => {
       if (data.err || data.error) {
@@ -91,7 +89,6 @@ const AddNewAddress = () => {
           country: "",
           landmark: "",
           zipcode: "",
-          user: null,
         });
 
         // Setting Success
