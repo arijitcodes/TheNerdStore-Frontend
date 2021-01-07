@@ -8,6 +8,7 @@ import { statusButton } from "../admin/helper/orderHelper";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { user, token } = isAuthenticated();
 
@@ -20,12 +21,21 @@ const Orders = () => {
     getOrders(user._id, token).then((data) => {
       if (data.err || data.error) {
         console.log(data.err ? data.err : data.error);
+        setLoading(false);
       } else {
         setOrders(data);
         // console.log(data);
+        setLoading(false);
       }
     });
   };
+
+  // Loading Message
+  const loadingMessage = () => (
+    <div className="alert alert-info" align="center">
+      <h3>Loading...</h3>
+    </div>
+  );
 
   // Orders
   const displayOrders = () => (
@@ -109,7 +119,15 @@ const Orders = () => {
   return (
     <Base title="Orders" description="Check all of your orders">
       <h3>Your Orders ({orders && orders.length}):</h3>
-      {orders.length > 0 ? displayOrders() : "Loading..."}
+      {loading === true ? (
+        loadingMessage()
+      ) : orders.length > 0 ? (
+        displayOrders()
+      ) : (
+        <div className="alert alert-warning" align="center">
+          <h4>No Orders Found!</h4>
+        </div>
+      )}
     </Base>
   );
 };
