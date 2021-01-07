@@ -46,20 +46,20 @@ const Orders = () => {
             <div className="row" key={index}>
               <div className="col-sm-10 offset-sm-1">
                 <div
-                  class="card border-info my-3"
+                  className="card border-info my-3"
                   style={{ background: "rgb(0,0,0,0)" }}
                 >
-                  <div class="card-header">
+                  <div className="card-header">
                     Order <span className="text-info">#{order._id}</span>
                   </div>
-                  <div class="card-body">
+                  <div className="card-body">
                     <div className="row">
                       <div className="col-md-6 col-sm-12">
                         <div className="col">
-                          <h5 class="card-title">
+                          <h5 className="card-title">
                             Order Status: {statusButton(order.status)}
                           </h5>
-                          <p class="card-text">
+                          <p className="card-text">
                             <span className="text-muted">Order Date:</span>{" "}
                             {new Date(order.createdAt).toLocaleString()} <br />
                             <span className="text-muted">Total: $</span>{" "}
@@ -75,7 +75,7 @@ const Orders = () => {
                       <div className="col-md-6 col-sm-12 mt-4 mt-md-0">
                         <div className="row">
                           <div className="col">
-                            <h5 class="card-title">
+                            <h5 className="card-title">
                               Item(s) Ordered: {order.products.length}
                             </h5>
                           </div>
@@ -87,10 +87,10 @@ const Orders = () => {
                                 className="card border-light my-2 mx-1"
                                 style={{ background: "rgb(0,0,0,0)" }}
                               >
-                                {/* <div class="card-header"></div> */}
-                                <div class="card-body">
-                                  <h5 class="card-title">{product.name}</h5>
-                                  <p class="card-text">
+                                {/* <div className="card-header"></div> */}
+                                <div className="card-body">
+                                  <h5 className="card-title">{product.name}</h5>
+                                  <p className="card-text">
                                     <span className="text-muted">Price:</span>{" "}
                                     {product.price}
                                     <br />

@@ -90,6 +90,19 @@ const Payment = ({ products, setReload = (f) => f, reload = undefined }) => {
               </>
             ) : (
               <>
+                <div className="row">
+                  <div className="col">
+                    Test with these Cards:
+                    <br />
+                    American Express Card: 371449635398431
+                    <br />
+                    Master Card: 2223000048400011
+                    <br />
+                    Visa Card: 4009348888881881
+                    <br />
+                    Expiry Date: 12/21
+                  </div>
+                </div>
                 <div>
                   <DropIn
                     options={{ authorization: info.clientToken }}
