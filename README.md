@@ -1,4 +1,4 @@
-# The NerdStore - Frontend
+# The NerdStore v1.0 - Frontend
 
 ## Author
 
