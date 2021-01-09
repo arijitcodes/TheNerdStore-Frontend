@@ -51,21 +51,6 @@ NOTE: This is a demo project. There can be a lot of more features and functional
 
 <hr>
 
-## Tips
-
-<div>
-<ol>
-    <li>To setup this project, clone it and run npm install.</li>
-    <li>Create a file named .env in the root.</li>
-    <li>Add the following two Env Variables to be used in the app :
-    <ul>
-        <li>mongodbURI</li>
-        <li>jwtSecret</li>
-    </ul>
-    </li>
-    <li>Set up the values of the two fields with your own mongoDB connection uri and your own JWT Secret Key.</li>
-</ol>
-</div>
-<hr>
+This project is uploaded to display my work. So there will be no setup instructions provided here.
 
 #
