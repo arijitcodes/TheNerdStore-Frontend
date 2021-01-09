@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# The NerdStore - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Author
 
-## Available Scripts
+Author : [Arijit Banerjee](https://www.github.com/ArijitCodes)
 
-In the project directory, you can run:
+About : Full Stack Web Developer | Cyber Security Enthusiast | Actor
 
-### `npm start`
+Social Media : &nbsp;
+[![Instagram](https://i.ibb.co/4t76vTc/insta-transparent-14px.png) Instagram](https://www.instagram.com/arijit.codes)
+&nbsp;
+[![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/arijitban)
+&nbsp;
+[![GitHub](https://i.imgur.com/o7f6k1e.png) GitHub](https://github.com/ArijitCodes)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Email: arijit.codes@gmail.com
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<hr>
 
-### `npm test`
+## Live Demo (Whole Project)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For a Live Demo, check : [https://arijit-store.herokuapp.com](https://arijit-store.herokuapp.com)
 
-### `npm run build`
+<hr>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Functionalities and Technologies Used (in Whole Project)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`Stack` : MERN Stack (MongoDB, ExpressJS, ReactJS, NodeJS)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`Technologies Used` : NodeJS, ExpressJS, ReactJS, MongoDB, Mongoose, Express-Validator, Crypto, JSONWebToken (JWT), Express-JWT, React Hooks, Global State Management using State Reducer and Context Api, Formidable, Lodash, Bootstrap, BrainTree Payment Gateway etc.
 
-### `npm run eject`
+`Functionalities` : REST Api, CRUD, User Registration, Log In, Authentication, Authorization, JWT Token, PRIVATE and PUBLIC Routes, Server Side Validation using Express-Validator, Password Encryption using Crypto, Global State Management, User Dashboard, Admin Dashboard, Fully Responsive Web Design using Bootstrap etc.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+User Dashboard - Registration, Login, Logout, Cart/Profile/Orders/Address Management, Change User Profile Picture, Manage Multiple Saved Addresses, Manage Orders(history), and general E-commerce buying features etc.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Admin Dashboard - All of User Features, + Create/Read/Update/Delete Category, Create/Read/Update/Delete Products, Orders Management etc.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<hr>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## From the Developer:
 
-## Learn More
+This is a Self Project, made on MERN Stack. I did this project while going through a BootCamp, and the Rest was done later on my own. I added and improvised the web app with a lot of features and functionalities.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This is a Full Stack E-commerce Web App just like any other popular E-commerce systems. The only difference is, it is based on Individual Stores.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This is just the Version 1.0.0 of this Project. I have future updates planned with a lot more features.
 
-### Code Splitting
+If you have any suggestions, please feel free to leave the suggestions. Constructive Criticism is always appreciated.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+NOTE: This is a demo project. There can be a lot of more features and functionalities that could be added with this.
 
-### Analyzing the Bundle Size
+<hr>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Tips
 
-### Making a Progressive Web App
+<div>
+<ol>
+    <li>To setup this project, clone it and run npm install.</li>
+    <li>Create a file named .env in the root.</li>
+    <li>Add the following two Env Variables to be used in the app :
+    <ul>
+        <li>mongodbURI</li>
+        <li>jwtSecret</li>
+    </ul>
+    </li>
+    <li>Set up the values of the two fields with your own mongoDB connection uri and your own JWT Secret Key.</li>
+</ol>
+</div>
+<hr>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#
